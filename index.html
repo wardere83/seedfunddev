@@ -118,16 +118,15 @@
 
   /* ---------------- HERO ---------------- */
   .hero{
-    position:relative;padding:42px 0 32px;text-align:center;overflow:hidden;
+    position:relative;padding:24px 0 26px;text-align:center;overflow:hidden;
     background:
       radial-gradient(900px 500px at 50% -8%, rgba(199,91,42,.10), transparent 60%),
       linear-gradient(180deg,var(--paper-3),var(--paper));
   }
-  .hero .logo-stack{margin:0 auto 30px;width:148px;}
-  .hero h1{margin:0 auto 16px;max-width:18ch;}
+  .hero h1{margin:0 auto 12px;max-width:18ch;}
   /* hero ticker: single-line marquee of the headline */
-  .hero-ticker{max-width:100% !important;width:100%;margin:0 0 16px !important;overflow:hidden;
-    white-space:nowrap;position:relative;
+  .hero-ticker{max-width:100% !important;width:100%;margin:0 0 10px !important;overflow:hidden;
+    white-space:nowrap;position:relative;font-size:clamp(22px,3vw,32px);
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
     mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
   .hero-ticker-track{display:inline-flex;align-items:center;will-change:transform;
@@ -138,13 +137,13 @@
   @keyframes hero-marquee{from{transform:translateX(0);}to{transform:translateX(-33.333%);}}
   @media (prefers-reduced-motion:reduce){.hero-ticker-track{animation:none;}}
   .hero h1 em{font-style:normal;color:var(--orange);}
-  .hero .lead{margin:0 auto 14px;}
+  .hero .lead{margin:0 auto 12px;}
   .hero-tag{
-    display:inline-flex;gap:10px;align-items:center;margin-bottom:30px;
-    font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);
+    display:inline-flex;gap:10px;align-items:center;margin-bottom:16px;
+    font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2);
   }
   .hero-tag .dot{width:5px;height:5px;border-radius:50%;background:var(--orange);}
-  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:4px;}
   .btn{
     font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;border:none;
     padding:13px 26px;border-radius:980px;transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
@@ -156,7 +155,7 @@
 
   /* goal meter */
   .goal-card{
-    margin:30px auto 0;max-width:860px;background:var(--paper);border:1px solid var(--line);
+    margin:22px auto 0;max-width:860px;background:var(--paper);border:1px solid var(--line);
     border-radius:var(--radius);padding:22px 26px;box-shadow:var(--shadow-lg);text-align:left;
   }
   .goal-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:14px;}
@@ -500,25 +499,38 @@
     background:rgba(252,252,253,.82);
     backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
   }
-  .app-topbar .lang-bar{padding:9px 28px;}
+  .app-topbar .lang-bar{padding:8px 28px;}
   .lang-bar{
     display:flex;align-items:center;justify-content:flex-end;gap:14px;
     max-width:var(--maxw);margin:0 auto;
   }
-  .hero .lang-bar{justify-content:center;padding-bottom:6px;}
-  .lang-bar .lang-label{
-    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);
-    display:flex;align-items:center;gap:7px;
+  /* translate dropdown tab */
+  .lang-dd{position:relative;}
+  .lang-trigger{
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:inherit;
+    border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);
+    font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:980px;transition:all .2s ease;
   }
-  .lang-bar .lang-label svg{width:14px;height:14px;opacity:.6;}
-  .lang-chips{display:flex;gap:4px;flex-wrap:wrap;}
-  .lang-chip{
-    border:1px solid var(--line);background:var(--paper);cursor:pointer;font-family:inherit;
-    font-size:12px;font-weight:600;color:var(--muted);padding:5px 11px;border-radius:980px;
-    transition:all .2s ease;
+  .lang-trigger:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-soft);}
+  .lang-trigger svg{width:14px;height:14px;flex:none;}
+  .lang-trigger .lang-current{color:var(--orange);}
+  .lang-trigger .lang-caret{width:11px;height:11px;transition:transform .2s ease;}
+  .lang-dd.open .lang-trigger{border-color:var(--orange);color:var(--orange);background:var(--orange-soft);}
+  .lang-dd.open .lang-caret{transform:rotate(180deg);}
+  .lang-menu{
+    position:absolute;top:calc(100% + 8px);right:0;min-width:170px;z-index:90;
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;
+    box-shadow:var(--shadow-lg);padding:6px;display:none;
+    transform-origin:top right;animation:lang-pop .18s cubic-bezier(.22,.61,.36,1);
   }
-  .lang-chip:hover{color:var(--ink);border-color:var(--muted-2);}
-  .lang-chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .lang-dd.open .lang-menu{display:block;}
+  @keyframes lang-pop{from{opacity:0;transform:translateY(-6px) scale(.97);}to{opacity:1;transform:none;}}
+  .lang-opt{
+    display:block;width:100%;text-align:left;border:none;background:none;cursor:pointer;font-family:inherit;
+    font-size:13.5px;font-weight:500;color:var(--ink-soft);padding:9px 12px;border-radius:9px;transition:all .15s ease;
+  }
+  .lang-opt:hover{background:var(--orange-soft);color:var(--orange);}
+  .lang-opt.active{background:var(--paper-2);color:var(--orange);font-weight:700;}
   /* hide Google's injected UI chrome */
   .goog-te-banner-frame,.goog-te-gadget,.goog-logo-link,.skiptranslate iframe,
   #goog-gt-tt,.goog-te-balloon-frame,.goog-tooltip{display:none !important;}
@@ -661,16 +673,20 @@
 <!-- ============ TOP LANGUAGE BAR (every tab) ============ -->
 <div class="app-topbar">
   <div class="wrap lang-bar">
-    <span class="lang-label">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
-      Translate
-    </span>
-    <div class="lang-chips" id="langChips">
-      <button class="lang-chip active" data-lang="en" onclick="setLang('en',this)">English</button>
-      <button class="lang-chip" data-lang="fr" onclick="setLang('fr',this)">Français</button>
-      <button class="lang-chip" data-lang="ar" onclick="setLang('ar',this)">العربية</button>
-      <button class="lang-chip" data-lang="wo" onclick="setLang('wo',this)">Wolof</button>
-      <button class="lang-chip" data-lang="zh-CN" onclick="setLang('zh-CN',this)">中文</button>
+    <div class="lang-dd" id="langDD">
+      <button class="lang-trigger" id="langTrigger" aria-haspopup="true" aria-expanded="false" onclick="toggleLangMenu(event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        <span>Translate</span>
+        <span class="lang-current" id="langCurrent">English</span>
+        <svg class="lang-caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button class="lang-opt active" role="menuitem" data-lang="en" data-label="English" onclick="setLang('en',this)">English</button>
+        <button class="lang-opt" role="menuitem" data-lang="fr" data-label="Français" onclick="setLang('fr',this)">Français</button>
+        <button class="lang-opt" role="menuitem" data-lang="ar" data-label="العربية" onclick="setLang('ar',this)">العربية</button>
+        <button class="lang-opt" role="menuitem" data-lang="wo" data-label="Wolof" onclick="setLang('wo',this)">Wolof</button>
+        <button class="lang-opt" role="menuitem" data-lang="zh-CN" data-label="中文" onclick="setLang('zh-CN',this)">中文</button>
+      </div>
     </div>
   </div>
 </div>
@@ -682,7 +698,6 @@
 <section class="panel active" id="overview" style="padding-top:0">
   <div class="hero">
     <div class="wrap">
-      <svg class="logo-stack" viewBox="0 0 128 128" style="margin:0 auto 30px;width:118px"><use href="#seedEmblem"/></svg>
       <div class="hero-tag"><span class="dot"></span> Two-Year Fundraising Plan · $3.8M · 2026–2028</div>
       <h1 class="hero-ticker" aria-label="Investing in Africa's next generation of leaders.">
         <span class="hero-ticker-track">
@@ -1345,9 +1360,28 @@ function googleTranslateElementInit(){
     {pageLanguage:'en', includedLanguages:'en,fr,ar,wo,zh-CN', autoDisplay:false},
     'google_translate_element');
 }
+function toggleLangMenu(e){
+  if(e) e.stopPropagation();
+  var dd=document.getElementById('langDD');
+  var open=dd.classList.toggle('open');
+  document.getElementById('langTrigger').setAttribute('aria-expanded',open?'true':'false');
+}
+function closeLangMenu(){
+  var dd=document.getElementById('langDD');
+  if(dd){dd.classList.remove('open');document.getElementById('langTrigger').setAttribute('aria-expanded','false');}
+}
+// close the dropdown on outside click or Escape
+document.addEventListener('click',function(e){
+  var dd=document.getElementById('langDD');
+  if(dd&&dd.classList.contains('open')&&!dd.contains(e.target)) closeLangMenu();
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLangMenu();});
+
 function setLang(lang, btn){
-  document.querySelectorAll('.lang-chip').forEach(function(c){c.classList.remove('active');});
-  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.lang-opt').forEach(function(c){c.classList.toggle('active',c.dataset.lang===lang);});
+  var cur=document.getElementById('langCurrent');
+  if(cur){var src=btn||document.querySelector('.lang-opt[data-lang="'+lang+'"]');cur.textContent=src?(src.dataset.label||src.textContent):lang;}
+  closeLangMenu();
   var host=location.hostname;
   // set the googtrans cookie the widget reads, for every host scope
   var val='/en/'+lang;
@@ -1361,7 +1395,12 @@ function setLang(lang, btn){
 // restore previously chosen language on load
 (function(){
   var m=document.cookie.match(/googtrans=\/[^\/]*\/([^;]+)/);
-  if(m&&m[1]){var l=decodeURIComponent(m[1]);document.querySelectorAll('.lang-chip').forEach(function(c){c.classList.toggle('active',c.dataset.lang===l);});}
+  if(m&&m[1]){
+    var l=decodeURIComponent(m[1]);
+    document.querySelectorAll('.lang-opt').forEach(function(c){c.classList.toggle('active',c.dataset.lang===l);});
+    var src=document.querySelector('.lang-opt[data-lang="'+l+'"]'), cur=document.getElementById('langCurrent');
+    if(src&&cur) cur.textContent=src.dataset.label||src.textContent;
+  }
 })();
 
 /* ---- TAB NAVIGATION ---- */
