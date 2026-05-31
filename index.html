@@ -186,9 +186,10 @@
     padding:3px 9px;border-radius:980px;background:rgba(46,139,87,.12);color:var(--green);}
 
   /* ---------------- GENERIC CARDS ---------------- */
-  .cards{display:grid;gap:18px;}
+  .cards{display:grid;gap:18px;align-items:stretch;}
   .cards.c3{grid-template-columns:repeat(3,1fr);}
   .cards.c2{grid-template-columns:repeat(2,1fr);}
+  .cards > .card{height:100%;}
   .card{
     background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
     padding:22px;transition:transform .3s ease,box-shadow .3s ease;
@@ -1350,9 +1351,14 @@ function setLang(lang, btn){
 })();
 
 /* ---- TAB NAVIGATION ---- */
-function showTab(id){
+function showTab(id, skipHash){
+  if(!document.getElementById(id)) return;
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+  // remember the current tab so a reload stays on this page
+  if(!skipHash && location.hash.slice(1)!==id){
+    if(history.replaceState) history.replaceState(null,'','#'+id); else location.hash=id;
+  }
   window.scrollTo({top:0,behavior:'smooth'});
   closeMenu();
   // nudge the Marathon video to play when its tab opens (some browsers
@@ -1684,8 +1690,18 @@ renderPipe();
 startMarathonRotator();
 buildBws();
 document.querySelectorAll('[data-animate]').forEach(function(el){io.observe(el);});
-// kick off anything already on screen (overview tab)
-animateIn(document.getElementById('overview'));
+// restore the tab from the URL hash so a reload stays on the same page
+(function(){
+  var valid=['overview','impact','strategy','metrics','pipeline','stakeholders','partnersorg','partners'];
+  var id=location.hash.slice(1);
+  if(valid.indexOf(id)!==-1 && id!=='overview'){ showTab(id, true); }
+  else { animateIn(document.getElementById('overview')); }
+})();
+// keep tab in sync with browser back/forward
+window.addEventListener('hashchange',function(){
+  var id=location.hash.slice(1)||'overview';
+  if(document.getElementById(id)) showTab(id, true);
+});
 </script>
 <!-- Google Translate (free widget; loads only when online). Powers the language bar. -->
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
