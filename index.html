@@ -1165,6 +1165,7 @@
             <div class="m-card-body flush">
               <div class="video-frame">
                 <video class="nip-video" autoplay loop muted playsinline preload="auto" disablepictureinpicture poster="assets/marathon/nipsey.jpeg">
+                  <source src="assets/marathon/marathon.mp4" type="video/mp4" />
                   <source src="assets/marathon/marathon.mov" type="video/quicktime" />
                 </video>
               </div>
@@ -1364,6 +1365,10 @@ function showTab(id){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
   window.scrollTo({top:0,behavior:'smooth'});
   closeMenu();
+  // nudge the Marathon video to play when its tab opens (some browsers
+  // pause autoplay on hidden elements)
+  var v=document.querySelector('#'+id+' .nip-video');
+  if(v){ v.muted=true; var pr=v.play(); if(pr&&pr.catch)pr.catch(function(){}); }
   // (re)trigger animations within the now-visible panel
   requestAnimationFrame(()=>animateIn(document.getElementById(id)));
 }
