@@ -1850,15 +1850,13 @@ function buildBws(){
   function buildPath(){
     var r=host.getBoundingClientRect(); W=r.width; H=r.height;
     svg.setAttribute('viewBox','0 0 '+W+' '+H);
-    var x=W-inset;                 // right edge of the bar
-    var top=inset+radius, bot=H-inset-radius;
-    // Single continuous path (cbolson style): curve out of the top-right
-    // corner, run down the right edge, then curve into the bottom-right
-    // corner — so the scrollbar visibly hugs the rounded corners.
-    var d='M '+(x-radius)+' '+inset+
-          ' A '+radius+' '+radius+' 0 0 1 '+x+' '+top+
-          ' L '+x+' '+bot+
-          ' A '+radius+' '+radius+' 0 0 1 '+(x-radius)+' '+(H-inset);
+    var x=W-inset;                 // right edge anchor (top & bottom)
+    var top=inset+8, bot=H-inset-8;
+    var midY=(top+bot)/2;
+    var bow=Math.max(40, Math.min(W*0.12, 90)); // how far the bar curves inward
+    // A single smooth bow down the right side — curved along its WHOLE
+    // length, not a straight edge. Thumb shares this curved path.
+    var d='M '+x+' '+top+' Q '+(x-bow)+' '+midY+' '+x+' '+bot;
     track.setAttribute('d',d); thumb.setAttribute('d',d);
     trackLen=thumb.getTotalLength();
     update();
@@ -1879,7 +1877,7 @@ function buildBws(){
   var dragging=false;
   function fromPointer(clientY){
     var r=host.getBoundingClientRect();
-    var top=inset+radius, bot=H-inset-radius;
+    var top=inset+8, bot=H-inset-8;
     var y=Math.min(Math.max(clientY-r.top,top),bot);
     var frac=(y-top)/(bot-top);
     var max=body.scrollHeight-body.clientHeight;
