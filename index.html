@@ -208,8 +208,8 @@
   .donut-wrap{display:flex;gap:30px;align-items:center;flex-wrap:wrap;}
   .donut{position:relative;width:200px;height:200px;flex:none;}
   .donut .center{position:absolute;inset:0;display:grid;place-items:center;text-align:center;}
-  .donut .center b{font-size:30px;font-weight:700;letter-spacing:-.02em;display:block;}
-  .donut .center span{font-size:11.5px;color:var(--muted);}
+  .donut .center b{font-size:26px;font-weight:700;letter-spacing:-.03em;display:block;line-height:1;}
+  .donut .center span{font-size:11px;color:var(--muted);}
   .legend{display:flex;flex-direction:column;gap:12px;flex:1;min-width:200px;}
   .legend .lg{display:flex;align-items:center;gap:11px;font-size:13.5px;cursor:default;transition:opacity .2s;}
   .legend .lg .sw{width:12px;height:12px;border-radius:4px;flex:none;}
@@ -337,7 +337,7 @@
   .form-note{font-size:12.5px;color:var(--muted-2);margin-top:6px;}
 
   /* ---------------- FOOTER ---------------- */
-  footer{background:var(--paper-3);border-top:1px solid var(--line);padding:54px 0 40px;margin-top:30px;}
+  footer{background:var(--paper-3);border-top:1px solid var(--line);padding:0;margin-top:30px;}
   .foot-inner{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start;}
   .foot-brand{max-width:330px;}
   .foot-brand .logo-emblem{height:42px;margin-bottom:16px;}
@@ -346,8 +346,8 @@
   .foot-col h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:600;}
   .foot-col a{display:block;font-size:13.5px;color:var(--ink-soft);margin-bottom:10px;transition:color .2s;}
   .foot-col a:hover{color:var(--orange);}
-  .foot-bottom{max-width:var(--maxw);margin:40px auto 0;padding:24px 28px 0;border-top:1px solid var(--line);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--muted-2);}
+  .foot-bottom{max-width:var(--maxw);margin:0 auto;padding:24px 28px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--muted-2);}
 
   /* ---------------- STAKEHOLDERS ---------------- */
   .sh-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
@@ -388,7 +388,7 @@
   }
   .bio-close:hover{background:#e8e8ec;}
   .bio-top{display:flex;gap:20px;align-items:center;margin-bottom:24px;padding-right:30px;}
-  .bio-photo{width:92px;height:92px;flex:none;border-radius:50%;overflow:hidden;position:relative;background:var(--paper-2);}
+  .bio-photo{width:128px;height:128px;flex:none;border-radius:50%;overflow:hidden;position:relative;background:var(--paper-2);box-shadow:0 4px 18px rgba(0,0,0,.10);}
   .bio-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.03);}
   .bio-photo .sh-mono{font-size:28px;}
   .bio-top h3{font-size:24px;letter-spacing:-.02em;}
@@ -1278,33 +1278,11 @@
 
 <!-- ============ FOOTER ============ -->
 <footer>
-  <div class="wrap">
-    <div class="foot-inner">
-      <div class="foot-brand">
-        <svg class="logo-emblem" viewBox="0 0 128 128" style="height:46px"><use href="#seedEmblem"/></svg>
-        <p><b>SEED</b> — Sports for Education and Economic Development. Using basketball as a hook to engage youth in education and leadership across Senegal, The Gambia, and beyond. <em>Create × Build × Produce.</em></p>
-      </div>
-      <div class="foot-cols">
-        <div class="foot-col">
-          <h5>Hub</h5>
-          <a onclick="showTab('overview')">Overview</a>
-          <a onclick="showTab('impact')">Programs &amp; Impact</a>
-          <a onclick="showTab('strategy')">Funding Strategy</a>
-          <a onclick="showTab('metrics')">KPI Dashboard</a>
-        </div>
-        <div class="foot-col">
-          <h5>Engage</h5>
-          <a onclick="showTab('pipeline')">Pipeline</a>
-          <a onclick="showTab('stakeholders')">Stakeholders</a>
-          <a onclick="showTab('partnersorg')">Partners</a>
-          <a onclick="showTab('partners')">Invest</a>
-          <a href="https://www.seedproject.org/" target="_blank" rel="noopener">seedproject.org</a>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="foot-bottom">
-    <span>© <span id="yr"></span> SEED Project · Fund Development Hub</span>
+    <span style="display:flex;align-items:center;gap:10px;">
+      <svg class="logo-emblem" viewBox="0 0 128 128" style="height:30px"><use href="#seedEmblem"/></svg>
+      © <span id="yr"></span> SEED Project · Fund Development Hub
+    </span>
     <span>Two-Year Plan · $3.8M Goal · 2026–2028</span>
   </div>
 </footer>
