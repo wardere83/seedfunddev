@@ -1848,15 +1848,15 @@ function buildBws(){
   function buildPath(){
     var r=host.getBoundingClientRect(); W=r.width; H=r.height;
     svg.setAttribute('viewBox','0 0 '+W+' '+H);
-    var x=W-inset, top=inset+radius, bot=H-inset-radius;
-    // vertical line down the right edge, curving into top & bottom corners
-    var d='M '+(x-0)+' '+top+
+    var x=W-inset;                 // right edge of the bar
+    var top=inset+radius, bot=H-inset-radius;
+    // Single continuous path (cbolson style): curve out of the top-right
+    // corner, run down the right edge, then curve into the bottom-right
+    // corner — so the scrollbar visibly hugs the rounded corners.
+    var d='M '+(x-radius)+' '+inset+
+          ' A '+radius+' '+radius+' 0 0 1 '+x+' '+top+
           ' L '+x+' '+bot+
-          ' A '+radius+' '+radius+' 0 0 1 '+(x-radius)+' '+(H-inset)+
-          ' M '+x+' '+top+
-          ' A '+radius+' '+radius+' 0 0 0 '+(x-radius)+' '+inset;
-    // simpler: a single vertical track with rounded ends along right edge
-    d='M '+x+' '+top+' L '+x+' '+bot;
+          ' A '+radius+' '+radius+' 0 0 1 '+(x-radius)+' '+(H-inset);
     track.setAttribute('d',d); thumb.setAttribute('d',d);
     trackLen=thumb.getTotalLength();
     update();
