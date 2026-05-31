@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SEED — Fund Development Hub</title>
-<meta name="description" content="SEED's Fund Development Hub — a two-year, $2.8M strategy advancing education, leadership, and opportunity through basketball across Senegal, The Gambia, and beyond." />
+<meta name="description" content="SEED's Fund Development Hub — a two-year, $3.8M fundraising plan advancing education, leadership, and opportunity through basketball across Senegal, The Gambia, and beyond." />
 <style>
   /* ============================================================
      SEED — FUND DEVELOPMENT HUB
@@ -62,24 +62,30 @@
   }
   .app{margin-left:var(--rail);flex:1;min-width:0;}
 
-  .brand{display:flex;align-items:center;gap:12px;cursor:pointer;padding:24px 22px 20px;}
+  .brand{display:flex;align-items:center;gap:12px;cursor:pointer;padding:26px 22px 18px;position:relative;}
+  .brand::after{content:"";position:absolute;left:22px;right:22px;bottom:0;height:1px;
+    background:linear-gradient(90deg,var(--orange),transparent 70%);}
   .brand .logo-emblem{height:40px;width:auto;flex:none;}
   .brand .brand-txt{display:flex;flex-direction:column;line-height:1.05;}
   .brand .brand-txt b{font-size:16px;font-weight:700;letter-spacing:.04em;}
-  .brand .brand-txt span{font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-top:2px;}
+  .brand .brand-txt span{font-size:9.5px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-top:3px;}
 
-  .tabs{display:flex;flex-direction:column;gap:2px;padding:8px 12px;overflow-y:auto;flex:1;}
+  .nav-section{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted-2);padding:14px 18px 6px;}
+  .tabs{display:flex;flex-direction:column;gap:1px;padding:8px 12px;overflow-y:auto;flex:1;}
   .tabs::-webkit-scrollbar{width:0;}
   .tab-btn{
-    border:none;background:none;cursor:pointer;text-align:left;
-    font-family:inherit;font-size:14px;font-weight:500;color:var(--muted);
-    padding:11px 16px;border-radius:12px;white-space:nowrap;display:flex;align-items:center;gap:11px;
+    position:relative;border:none;background:none;cursor:pointer;text-align:left;
+    font-family:inherit;font-size:13.5px;font-weight:500;color:var(--muted);
+    padding:10px 16px;border-radius:10px;white-space:nowrap;display:flex;align-items:center;gap:11px;
     transition:color .2s ease,background .2s ease;
   }
-  .tab-btn .tdot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.35;flex:none;transition:opacity .2s,transform .2s;}
+  .tab-btn .tdot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.3;flex:none;transition:opacity .2s,transform .2s;}
   .tab-btn:hover{color:var(--ink);background:var(--paper-2);}
   .tab-btn.active{color:var(--ink);background:var(--paper-2);font-weight:600;}
-  .tab-btn.active .tdot{opacity:1;background:var(--orange);transform:scale(1.4);}
+  .tab-btn.active::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+    width:3px;height:18px;border-radius:0 3px 3px 0;background:var(--orange);}
+  .tab-btn.active .tdot{opacity:1;background:var(--orange);transform:scale(1.5);}
 
   .sidebar-foot{padding:16px 18px;border-top:1px solid var(--line);}
   .nav-cta{
@@ -97,21 +103,21 @@
   .panel.active{display:block;}
   @keyframes fade{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 
-  section{padding:74px 0;}
+  section{padding:48px 0;}
   .eyebrow{
     font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
     color:var(--orange);margin-bottom:14px;
   }
-  h1{font-size:clamp(38px,6vw,68px);font-weight:700;letter-spacing:-.03em;line-height:1.03;}
-  h2{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.025em;line-height:1.07;}
-  h3{font-size:21px;font-weight:600;letter-spacing:-.01em;}
-  .lead{font-size:clamp(17px,2vw,21px);color:var(--muted);max-width:60ch;line-height:1.55;}
-  .section-head{max-width:70ch;margin-bottom:46px;}
+  h1{font-size:clamp(32px,4.4vw,50px);font-weight:700;letter-spacing:-.03em;line-height:1.05;}
+  h2{font-size:clamp(24px,2.8vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.1;}
+  h3{font-size:18px;font-weight:600;letter-spacing:-.01em;}
+  .lead{font-size:clamp(15px,1.4vw,17px);color:var(--muted);max-width:62ch;line-height:1.55;}
+  .section-head{max-width:68ch;margin-bottom:30px;}
   .section-head h2{margin-bottom:16px;}
 
   /* ---------------- HERO ---------------- */
   .hero{
-    position:relative;padding:96px 0 60px;text-align:center;overflow:hidden;
+    position:relative;padding:60px 0 44px;text-align:center;overflow:hidden;
     background:
       radial-gradient(900px 500px at 50% -8%, rgba(199,91,42,.10), transparent 60%),
       linear-gradient(180deg,var(--paper-3),var(--paper));
@@ -141,7 +147,7 @@
     border-radius:var(--radius);padding:38px 40px;box-shadow:var(--shadow-lg);text-align:left;
   }
   .goal-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:22px;}
-  .goal-top .big{font-size:clamp(34px,5vw,52px);font-weight:700;letter-spacing:-.03em;}
+  .goal-top .big{font-size:clamp(30px,4vw,42px);font-weight:700;letter-spacing:-.03em;}
   .goal-top .big small{font-size:18px;color:var(--muted);font-weight:500;letter-spacing:0;}
   .goal-top .pace{text-align:right;}
   .goal-top .pace b{font-size:26px;font-weight:700;color:var(--orange);}
@@ -159,7 +165,7 @@
     padding:26px 24px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;cursor:default;
   }
   .kpi:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#dcdce0;}
-  .kpi .k-val{font-size:38px;font-weight:700;letter-spacing:-.03em;line-height:1;}
+  .kpi .k-val{font-size:30px;font-weight:700;letter-spacing:-.03em;line-height:1;}
   .kpi .k-val .pre{color:var(--orange);}
   .kpi .k-label{margin-top:10px;font-size:13.5px;color:var(--muted);font-weight:500;}
   .kpi .k-sub{margin-top:6px;font-size:12px;color:var(--muted-2);}
@@ -255,10 +261,8 @@
   td .ftype{font-size:12px;color:var(--muted);margin-top:2px;}
   .stage{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;}
   .stage .sdot{width:8px;height:8px;border-radius:50%;}
-  .s-secured .sdot{background:var(--green);} .s-secured{color:var(--green);}
-  .s-submitted .sdot{background:var(--orange);} .s-submitted{color:var(--orange);}
-  .s-cultivating .sdot{background:#3b82f6;} .s-cultivating{color:#3b82f6;}
-  .s-identified .sdot{background:#9ca3af;} .s-identified{color:var(--muted);}
+  .s-planned .sdot{background:var(--orange);} .s-planned{color:var(--orange);}
+  .s-research .sdot{background:#9ca3af;} .s-research{color:var(--muted);}
   .amt{font-weight:700;letter-spacing:-.01em;}
   .table-summary{display:flex;justify-content:space-between;padding:18px 22px;background:var(--paper-3);
     font-size:13px;color:var(--muted);flex-wrap:wrap;gap:10px;}
@@ -269,7 +273,7 @@
     background:var(--ink);color:#fff;border-radius:var(--radius);padding:54px 44px;
     display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center;
   }
-  .impact-strip .ist b{font-size:clamp(34px,5vw,50px);font-weight:700;letter-spacing:-.03em;display:block;color:var(--orange-bright);}
+  .impact-strip .ist b{font-size:clamp(28px,3.6vw,40px);font-weight:700;letter-spacing:-.03em;display:block;color:var(--orange-bright);}
   .impact-strip .ist span{font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;display:block;line-height:1.4;}
 
   /* ---------------- TIMELINE ---------------- */
@@ -451,6 +455,37 @@
   .bws-dot:hover{transform:scale(1.25);}
   .bws-dot.on{background:#C75B2A;border-color:#C75B2A;}
 
+  /* ---------------- LANGUAGE BAR ---------------- */
+  .app-topbar{
+    position:sticky;top:0;z-index:80;border-bottom:1px solid var(--line);
+    background:rgba(252,252,253,.82);
+    backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  }
+  .app-topbar .lang-bar{padding:9px 28px;}
+  .lang-bar{
+    display:flex;align-items:center;justify-content:flex-end;gap:14px;
+    max-width:var(--maxw);margin:0 auto;
+  }
+  .hero .lang-bar{justify-content:center;padding-bottom:6px;}
+  .lang-bar .lang-label{
+    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);
+    display:flex;align-items:center;gap:7px;
+  }
+  .lang-bar .lang-label svg{width:14px;height:14px;opacity:.6;}
+  .lang-chips{display:flex;gap:4px;flex-wrap:wrap;}
+  .lang-chip{
+    border:1px solid var(--line);background:var(--paper);cursor:pointer;font-family:inherit;
+    font-size:12px;font-weight:600;color:var(--muted);padding:5px 11px;border-radius:980px;
+    transition:all .2s ease;
+  }
+  .lang-chip:hover{color:var(--ink);border-color:var(--muted-2);}
+  .lang-chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  /* hide Google's injected UI chrome */
+  .goog-te-banner-frame,.goog-te-gadget,.goog-logo-link,.skiptranslate iframe,
+  #goog-gt-tt,.goog-te-balloon-frame,.goog-tooltip{display:none !important;}
+  body{top:0 !important;position:static !important;}
+  font.goog-text-highlight{background:none !important;box-shadow:none !important;}
+
   /* ---------------- RESPONSIVE ---------------- */
   /* mobile bar + drawer sidebar */
   .mobile-bar{
@@ -563,13 +598,17 @@
       </div>
     </div>
     <nav class="tabs" id="tabBar">
+      <div class="nav-section">Overview</div>
       <button class="tab-btn active" data-tab="overview" onclick="showTab('overview')"><span class="tdot"></span>Overview</button>
       <button class="tab-btn" data-tab="impact" onclick="showTab('impact')"><span class="tdot"></span>Programs &amp; Impact</button>
+      <div class="nav-section">The Plan</div>
       <button class="tab-btn" data-tab="strategy" onclick="showTab('strategy')"><span class="tdot"></span>Funding Strategy</button>
       <button class="tab-btn" data-tab="metrics" onclick="showTab('metrics')"><span class="tdot"></span>KPI Dashboard</button>
       <button class="tab-btn" data-tab="pipeline" onclick="showTab('pipeline')"><span class="tdot"></span>Pipeline</button>
+      <div class="nav-section">People</div>
       <button class="tab-btn" data-tab="stakeholders" onclick="showTab('stakeholders')"><span class="tdot"></span>Stakeholders</button>
       <button class="tab-btn" data-tab="partnersorg" onclick="showTab('partnersorg')"><span class="tdot"></span>Partners</button>
+      <div class="nav-section">Get Involved</div>
       <button class="tab-btn" data-tab="partners" onclick="showTab('partners')"><span class="tdot"></span>Invest</button>
     </nav>
     <div class="sidebar-foot">
@@ -579,6 +618,24 @@
 
 <main class="app">
 
+<!-- ============ TOP LANGUAGE BAR (every tab) ============ -->
+<div class="app-topbar">
+  <div class="wrap lang-bar">
+    <span class="lang-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+      Translate
+    </span>
+    <div class="lang-chips" id="langChips">
+      <button class="lang-chip active" data-lang="en" onclick="setLang('en',this)">English</button>
+      <button class="lang-chip" data-lang="fr" onclick="setLang('fr',this)">Français</button>
+      <button class="lang-chip" data-lang="ar" onclick="setLang('ar',this)">العربية</button>
+      <button class="lang-chip" data-lang="wo" onclick="setLang('wo',this)">Wolof</button>
+      <button class="lang-chip" data-lang="zh-CN" onclick="setLang('zh-CN',this)">中文</button>
+    </div>
+  </div>
+</div>
+<div id="google_translate_element" style="display:none"></div>
+
 <!-- ============================================================
      TAB 1 — OVERVIEW
      ============================================================ -->
@@ -586,9 +643,9 @@
   <div class="hero">
     <div class="wrap">
       <svg class="logo-stack" viewBox="0 0 128 128" style="margin:0 auto 30px;width:118px"><use href="#seedEmblem"/></svg>
-      <div class="hero-tag"><span class="dot"></span> 2-Year Fund Development Campaign · 2026–2028</div>
+      <div class="hero-tag"><span class="dot"></span> Two-Year Fundraising Plan · $3.8M · 2026–2028</div>
       <h1>Investing in Africa's next generation of <em>leaders</em>.</h1>
-      <p class="lead">SEED's Fund Development Hub charts our two-year path to <b>$2.8M</b> — led by the <b>Pan-African Council</b> and <b>Defiant Sports</b>, helping SEED scale its programs and unite government, philanthropic, corporate, county, state, and federal funders behind education and leadership powered by basketball.</p>
+      <p class="lead">SEED's Fund Development Hub sets the two-year plan to raise <b>$3.8M</b> for SEED — led by the <b>Pan-African Council</b> and <b>Defiant Sports</b>, with targeted asks across government, philanthropic, corporate, county, state, and federal funders to scale education and leadership powered by basketball.</p>
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="showTab('strategy')">Explore the Strategy</button>
         <button class="btn btn-ghost" onclick="showTab('metrics')">View Live KPIs</button>
@@ -598,19 +655,19 @@
       <div class="goal-card" data-animate>
         <div class="goal-top">
           <div>
-            <div class="big"><span class="count" data-to="2800000" data-prefix="$" data-money>$0</span></div>
-            <div style="font-size:13px;color:var(--muted);margin-top:4px;letter-spacing:.04em;">TWO-YEAR CAMPAIGN GOAL</div>
+            <div class="big"><span class="count" data-to="3800000" data-prefix="$" data-money>$0</span></div>
+            <div style="font-size:12.5px;color:var(--muted);margin-top:4px;letter-spacing:.04em;">TWO-YEAR FUNDRAISING GOAL · TO RAISE</div>
           </div>
           <div class="pace">
-            <b><span class="count" data-to="40" data-suffix="%">0%</span></b>
-            <span>of goal secured &amp; committed</span>
+            <b style="color:var(--ink)">$0</b>
+            <span>raised to date · campaign launching</span>
           </div>
         </div>
-        <div class="meter"><i data-meter="40"></i></div>
+        <div class="meter"><i data-meter="0"></i></div>
         <div class="meter-legend">
-          <span><b style="color:var(--orange)">$1.12M</b> secured &amp; committed</span>
-          <span><b style="color:var(--ink)">$980K</b> in active pipeline</span>
-          <span><b style="color:var(--muted)">$700K</b> identified</span>
+          <span><b style="color:var(--orange)">$3.8M</b> two-year target</span>
+          <span><b style="color:var(--ink)">~$475K</b> needed per quarter</span>
+          <span><b style="color:var(--muted)">8 quarters</b> to goal</span>
         </div>
       </div>
     </div>
@@ -620,34 +677,34 @@
     <section>
       <div class="section-head">
         <div class="eyebrow">The Opportunity</div>
-        <h2>One mission. Six funder ecosystems. A clear two-year horizon.</h2>
-        <p class="lead">Since 2002, SEED (Sports for Education and Economic Development) has used basketball as a hook to engage youth across Senegal and The Gambia in education and leadership. This campaign scales that proven model — with disciplined targets across every funding channel.</p>
+        <h2>One mission. Six funder ecosystems. A clear two-year plan.</h2>
+        <p class="lead">Since 2002, SEED (Sports for Education and Economic Development) has used basketball as a hook to engage youth across Senegal and The Gambia in education and leadership. This is a new campaign — with disciplined targets set across every funding channel to reach $3.8M.</p>
       </div>
 
       <div class="kpi-grid">
         <div class="kpi" data-animate>
-          <div class="k-val"><span class="pre">$</span><span class="count" data-to="2.8" data-decimals="1">0</span>M</div>
-          <div class="k-label">Two-Year Campaign Goal</div>
-          <div class="k-sub">FY2026 – FY2028</div>
-          <span class="k-trend">On pace</span>
+          <div class="k-val"><span class="pre">$</span><span class="count" data-to="3.8" data-decimals="1">0</span>M</div>
+          <div class="k-label">Two-Year Goal to Raise</div>
+          <div class="k-sub">New campaign · FY2026 – FY2028</div>
+          <span class="k-trend">Launching</span>
         </div>
         <div class="kpi" data-animate>
-          <div class="k-val"><span class="count" data-to="2000">0</span>+</div>
-          <div class="k-label">Youth Engaged Weekly</div>
-          <div class="k-sub">Senegal · The Gambia · U.S.</div>
-          <span class="k-trend">+12% YoY</span>
+          <div class="k-val"><span class="pre">$</span><span class="count" data-to="475">0</span>K</div>
+          <div class="k-label">Needed per Quarter</div>
+          <div class="k-sub">Average run-rate over 8 quarters</div>
+          <span class="k-trend">Target pace</span>
         </div>
         <div class="kpi" data-animate>
           <div class="k-val"><span class="count" data-to="6">0</span></div>
           <div class="k-label">Funder Ecosystems</div>
           <div class="k-sub">Gov · Philanthropy · Corporate · County · State · Federal</div>
-          <span class="k-trend">All active</span>
+          <span class="k-trend">Targeted</span>
         </div>
         <div class="kpi" data-animate>
-          <div class="k-val"><span class="count" data-to="22">0</span></div>
-          <div class="k-label">Years of Proven Impact</div>
-          <div class="k-sub">Founded 2002 in Thiès, Senegal</div>
-          <span class="k-trend">Trusted</span>
+          <div class="k-val"><span class="count" data-to="2000">0</span>+</div>
+          <div class="k-label">Youth Engaged Weekly</div>
+          <div class="k-sub">Senegal · The Gambia · U.S.</div>
+          <span class="k-trend">The impact</span>
         </div>
       </div>
     </section>
@@ -681,7 +738,7 @@
       <div class="section-head">
         <div class="eyebrow">What Your Investment Powers</div>
         <h2>Programs designed to create, build, and produce leaders.</h2>
-        <p class="lead">Every dollar raised in this campaign flows directly into SEED's interlocking programs — a pipeline that carries a child from their first basketball clinic to a university degree and a career.</p>
+        <p class="lead">Every dollar raised will flow directly into SEED's interlocking programs — a pipeline that carries a child from their first basketball clinic to a university degree and a career.</p>
       </div>
 
       <div class="cards c3">
@@ -767,7 +824,7 @@
   <div class="wrap">
     <section style="padding-bottom:34px">
       <div class="section-head">
-        <div class="eyebrow">The $2.8M Strategy</div>
+        <div class="eyebrow">The $3.8M Strategy</div>
         <h2>A diversified, six-channel approach to durable funding.</h2>
         <p class="lead">Resilient nonprofits don't depend on a single source. SEED's two-year plan balances six funder ecosystems — so momentum in one channel never leaves the mission exposed in another.</p>
       </div>
@@ -775,11 +832,11 @@
       <div class="chart-grid">
         <div class="chart-card" data-animate>
           <h3>Target by Funder Ecosystem</h3>
-          <div class="chart-sub">How the $2.8M goal is distributed across channels</div>
+          <div class="chart-sub">How the $3.8M goal is distributed across channels</div>
           <div class="donut-wrap">
             <div class="donut">
               <svg viewBox="0 0 42 42" id="donutSrc" style="transform:rotate(-90deg)"></svg>
-              <div class="center"><b>$2.8M</b><span>Total Goal</span></div>
+              <div class="center"><b>$3.8M</b><span>Total Goal</span></div>
             </div>
             <div class="legend" id="legendSrc"></div>
           </div>
@@ -787,7 +844,7 @@
 
         <div class="chart-card" data-animate>
           <h3>Allocation by Program</h3>
-          <div class="chart-sub">Where the campaign invests every dollar raised</div>
+          <div class="chart-sub">Where the plan invests every dollar raised</div>
           <div id="programBars" style="margin-top:6px"></div>
         </div>
       </div>
@@ -800,32 +857,32 @@
       </div>
       <div class="cards c3">
         <div class="card" data-animate>
-          <span class="pill orange">$200K Target</span>
+          <span class="pill orange">$300K Target</span>
           <h3 style="margin-top:12px">Government</h3>
           <p>Bilateral and multilateral development funding, ministry partnerships, and sport-for-development grants tied to youth and education mandates.</p>
         </div>
         <div class="card" data-animate>
-          <span class="pill orange">$900K Target</span>
+          <span class="pill orange">$1.2M Target</span>
           <h3 style="margin-top:12px">Philanthropies</h3>
           <p>Multi-year general operating and program grants from foundations focused on education, youth, gender equity, and African development.</p>
         </div>
         <div class="card" data-animate>
-          <span class="pill orange">$550K Target</span>
+          <span class="pill orange">$750K Target</span>
           <h3 style="margin-top:12px">Corporations</h3>
           <p>Brand partnerships, CSR commitments, and sponsorships from sport, finance, and technology companies investing in Africa's talent.</p>
         </div>
         <div class="card" data-animate>
-          <span class="pill orange">$200K Target</span>
+          <span class="pill orange">$250K Target</span>
           <h3 style="margin-top:12px">Countywide</h3>
           <p>Regional and diaspora-community partnerships, local government allocations, and place-based funds supporting youth programming.</p>
         </div>
         <div class="card" data-animate>
-          <span class="pill orange">$300K Target</span>
+          <span class="pill orange">$450K Target</span>
           <h3 style="margin-top:12px">Statewide</h3>
           <p>State-level education, workforce, and youth-development grant programs aligned to SEED's measurable academic outcomes.</p>
         </div>
         <div class="card" data-animate>
-          <span class="pill orange">$650K Target</span>
+          <span class="pill orange">$850K Target</span>
           <h3 style="margin-top:12px">Federal</h3>
           <p>Federal and agency funding (e.g., international development, education, and exchange programs) supporting cross-border youth impact.</p>
         </div>
@@ -841,7 +898,7 @@
         <div class="tl-item" data-animate><div class="tl-dot"></div><div class="tl-q">FY26 · H1</div><h4>Foundation</h4><p>Lock lead gifts, finalize the case for support, and open philanthropic &amp; corporate channels.</p></div>
         <div class="tl-item" data-animate><div class="tl-dot"></div><div class="tl-q">FY26 · H2</div><h4>Acceleration</h4><p>Submit federal &amp; state proposals; activate countywide and diaspora partnerships.</p></div>
         <div class="tl-item" data-animate><div class="tl-dot"></div><div class="tl-q">FY27 · H1</div><h4>Scale</h4><p>Convert pipeline to commitments; expand SEED Rise &amp; Girls; deepen multi-year renewals.</p></div>
-        <div class="tl-item" data-animate><div class="tl-dot"></div><div class="tl-q">FY27 · H2</div><h4>Legacy</h4><p>Close the $2.8M goal, steward funders, and publish two-year impact &amp; outcomes report.</p></div>
+        <div class="tl-item" data-animate><div class="tl-dot"></div><div class="tl-q">FY27 · H2</div><h4>Legacy</h4><p>Reach the $3.8M goal, steward funders, and publish two-year impact &amp; outcomes report.</p></div>
       </div>
     </section>
   </div>
@@ -854,35 +911,35 @@
   <div class="wrap">
     <section style="padding-bottom:30px">
       <div class="section-head">
-        <div class="eyebrow">Live KPI Dashboard</div>
-        <h2>Transparent metrics, updated every quarter.</h2>
-        <p class="lead">Funders expect accountability. This dashboard tracks the health of the campaign in real time — progress to goal, pipeline velocity, conversion, and channel diversification.</p>
+        <div class="eyebrow">Funding KPI Dashboard</div>
+        <h2>The metrics to reach $3.8M in two years.</h2>
+        <p class="lead">This is a new campaign — nothing raised yet. These targets define the pace, run-rate, and channel mix SEED needs to hit the $3.8M goal, and will track progress as the team executes.</p>
       </div>
 
       <div class="kpi-grid">
         <div class="kpi" data-animate>
-          <div class="k-val"><span class="pre">$</span><span class="count" data-to="1.12" data-decimals="2">0</span>M</div>
-          <div class="k-label">Secured &amp; Committed</div>
-          <div class="k-sub">40% of $2.8M goal</div>
-          <span class="k-trend">+$320K this quarter</span>
+          <div class="k-val"><span class="pre">$</span><span class="count" data-to="3.8" data-decimals="1">0</span>M</div>
+          <div class="k-label">Total Goal to Raise</div>
+          <div class="k-sub">Over 8 quarters · FY26–FY28</div>
+          <span class="k-trend">Target</span>
         </div>
         <div class="kpi" data-animate>
-          <div class="k-val"><span class="pre">$</span><span class="count" data-to="980" >0</span>K</div>
-          <div class="k-label">Active Pipeline</div>
-          <div class="k-sub">Proposals submitted &amp; under review</div>
-          <span class="k-trend">18 open asks</span>
+          <div class="k-val"><span class="pre">$</span><span class="count" data-to="475">0</span>K</div>
+          <div class="k-label">Required per Quarter</div>
+          <div class="k-sub">Average run-rate to stay on plan</div>
+          <span class="k-trend">Run-rate</span>
         </div>
         <div class="kpi" data-animate>
-          <div class="k-val"><span class="count" data-to="42">0</span></div>
-          <div class="k-label">Funder Prospects</div>
-          <div class="k-sub">Across all six ecosystems</div>
-          <span class="k-trend">+7 new</span>
+          <div class="k-val"><span class="count" data-to="15">0</span></div>
+          <div class="k-label">Target Opportunities</div>
+          <div class="k-sub">Asks mapped across six ecosystems</div>
+          <span class="k-trend">Planned</span>
         </div>
         <div class="kpi" data-animate>
-          <div class="k-val"><span class="count" data-to="38" data-suffix="%">0</span></div>
-          <div class="k-label">Proposal Win Rate</div>
-          <div class="k-sub">Awarded ÷ decided</div>
-          <span class="k-trend">Above sector avg</span>
+          <div class="k-val"><span class="pre">$</span><span class="count" data-to="4.8" data-decimals="1">0</span>M</div>
+          <div class="k-label">Pipeline to Build</div>
+          <div class="k-sub">~1.25× coverage of the goal</div>
+          <span class="k-trend">Cushion</span>
         </div>
       </div>
     </section>
@@ -890,25 +947,19 @@
     <section style="padding-top:0">
       <div class="chart-grid">
         <div class="chart-card" data-animate>
-          <h3>Cumulative Pacing to Goal</h3>
-          <div class="chart-sub">Target vs. actual raised across eight quarters ($000s)</div>
+          <h3>Cumulative Plan to $3.8M</h3>
+          <div class="chart-sub">Quarterly fundraising target, building to the goal ($000s)</div>
           <div class="bars" id="paceBars"></div>
           <div class="chart-foot">
-            <span class="lk"><i style="background:var(--paper-2);border:1px dashed #d4d4d8"></i> Quarterly target (cumulative)</span>
-            <span class="lk"><i style="background:var(--orange)"></i> Actual raised (cumulative)</span>
+            <span class="lk"><i style="background:var(--orange)"></i> Cumulative target</span>
+            <span class="lk">Label = amount to raise that quarter</span>
           </div>
         </div>
 
         <div class="chart-card" data-animate>
-          <h3>Pipeline by Stage</h3>
-          <div class="chart-sub">Dollars moving through the funnel</div>
+          <h3>Target Allocation by Ecosystem</h3>
+          <div class="chart-sub">How the $3.8M target splits across funder channels</div>
           <div id="stageBars" style="margin-top:8px"></div>
-          <div class="chart-foot">
-            <span class="lk"><i style="background:var(--green)"></i> Secured</span>
-            <span class="lk"><i style="background:var(--orange)"></i> Submitted</span>
-            <span class="lk"><i style="background:#3b82f6"></i> Cultivating</span>
-            <span class="lk"><i style="background:#9ca3af"></i> Identified</span>
-          </div>
         </div>
       </div>
     </section>
@@ -916,29 +967,29 @@
     <section style="padding-top:24px">
       <div class="chart-grid">
         <div class="chart-card" data-animate>
-          <h3>Diversification Health</h3>
+          <h3>Diversification Plan</h3>
           <div class="chart-sub">No single channel exceeds 35% of the goal — by design</div>
           <div id="diversBars" style="margin-top:8px"></div>
         </div>
         <div class="chart-card" data-animate>
-          <h3>Campaign Vitals</h3>
-          <div class="chart-sub">At-a-glance health indicators</div>
+          <h3>Plan Vitals</h3>
+          <div class="chart-sub">The numbers that define the two-year plan</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px">
             <div style="background:var(--paper-3);border-radius:14px;padding:20px">
-              <div style="font-size:30px;font-weight:700;letter-spacing:-.02em"><span class="count" data-to="63" data-suffix="%">0</span></div>
-              <div style="font-size:13px;color:var(--muted);margin-top:4px">Goal in motion (secured + pipeline)</div>
+              <div style="font-size:26px;font-weight:700;letter-spacing:-.02em">$<span class="count" data-to="3.8" data-decimals="1">0</span>M</div>
+              <div style="font-size:13px;color:var(--muted);margin-top:4px">Two-year goal to raise</div>
             </div>
             <div style="background:var(--paper-3);border-radius:14px;padding:20px">
-              <div style="font-size:30px;font-weight:700;letter-spacing:-.02em">$<span class="count" data-to="67" >0</span>K</div>
-              <div style="font-size:13px;color:var(--muted);margin-top:4px">Average gift size</div>
+              <div style="font-size:26px;font-weight:700;letter-spacing:-.02em">$<span class="count" data-to="158" >0</span>K</div>
+              <div style="font-size:13px;color:var(--muted);margin-top:4px">Needed per month, on average</div>
             </div>
             <div style="background:var(--paper-3);border-radius:14px;padding:20px">
-              <div style="font-size:30px;font-weight:700;letter-spacing:-.02em"><span class="count" data-to="14" >0</span></div>
-              <div style="font-size:13px;color:var(--muted);margin-top:4px">Months remaining in campaign</div>
+              <div style="font-size:26px;font-weight:700;letter-spacing:-.02em"><span class="count" data-to="24" >0</span></div>
+              <div style="font-size:13px;color:var(--muted);margin-top:4px">Months in the campaign</div>
             </div>
             <div style="background:var(--paper-3);border-radius:14px;padding:20px">
-              <div style="font-size:30px;font-weight:700;letter-spacing:-.02em"><span class="count" data-to="78" data-suffix="%">0</span></div>
-              <div style="font-size:13px;color:var(--muted);margin-top:4px">Multi-year commitments</div>
+              <div style="font-size:26px;font-weight:700;letter-spacing:-.02em"><span class="count" data-to="0" data-suffix="%">0</span></div>
+              <div style="font-size:13px;color:var(--muted);margin-top:4px">Raised to date — campaign launching</div>
             </div>
           </div>
         </div>
@@ -955,8 +1006,8 @@
     <section>
       <div class="section-head">
         <div class="eyebrow">Funding Pipeline</div>
-        <h2>An interactive view of every opportunity in motion.</h2>
-        <p class="lead">Filter the prospect pipeline by ecosystem and stage. Figures shown are campaign targets and illustrative pipeline values for planning and funder transparency.</p>
+        <h2>The opportunities we'll pursue to reach $3.8M.</h2>
+        <p class="lead">A new prospect plan — filter by ecosystem. Each row is a target ask SEED intends to pursue, with a planned timing. Nothing is awarded yet; these are the opportunities that build the pipeline to the goal.</p>
       </div>
 
       <div class="filters" id="pipeFilters">
@@ -975,9 +1026,9 @@
             <tr>
               <th>Funder / Opportunity</th>
               <th class="hide-sm">Channel</th>
-              <th>Stage</th>
+              <th>Status</th>
               <th class="num">Target Ask</th>
-              <th class="num hide-sm">Decision</th>
+              <th class="num hide-sm">Planned Action</th>
             </tr>
           </thead>
           <tbody id="pipeBody"></tbody>
@@ -999,7 +1050,7 @@
     <section>
       <div class="section-head">
         <div class="eyebrow">The People Behind the Campaign</div>
-        <h2>The leaders helping SEED scale and secure $2.8M.</h2>
+        <h2>The leaders helping SEED raise $3.8M.</h2>
         <p class="lead">This campaign is championed by a coalition of world-class operators across sport, culture, capital, and strategy — opening doors to funders and strengthening SEED's organizational capacity to deliver.</p>
       </div>
       <div class="sh-grid">
@@ -1064,7 +1115,7 @@
     <section style="padding-bottom:30px">
       <div class="section-head">
         <div class="eyebrow">The Coalition</div>
-        <h2>A mission-aligned network powering the $2.8M campaign.</h2>
+        <h2>A mission-aligned network powering the $3.8M plan.</h2>
         <p class="lead">The <b>Pan-African Council</b> and <b>Defiant Sports</b> lead the charge to help SEED scale its programs and secure the two-year goal — alongside cultural, brand, and program partners who extend SEED's reach across the continent and the diaspora.</p>
       </div>
       <div class="cards c3">
@@ -1215,8 +1266,8 @@
           <div class="info-line"><div class="il-ico">🏀</div><div><b>Footprint</b><span>Senegal · The Gambia · United States</span></div></div>
           <div style="margin-top:24px;padding:22px;background:var(--ink);border-radius:16px;color:#fff">
             <div style="font-size:13px;color:rgba(255,255,255,.7);margin-bottom:6px;letter-spacing:.04em">CAMPAIGN AT A GLANCE</div>
-            <div style="font-size:30px;font-weight:700;letter-spacing:-.02em;color:var(--orange-bright)">$2.8M · 2 Years</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.7);margin-top:6px">Six funder ecosystems · 40% secured</div>
+            <div style="font-size:30px;font-weight:700;letter-spacing:-.02em;color:var(--orange-bright)">$3.8M · 2 Years</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.7);margin-top:6px">Six funder ecosystems · new campaign</div>
           </div>
         </div>
       </div>
@@ -1254,7 +1305,7 @@
   </div>
   <div class="foot-bottom">
     <span>© <span id="yr"></span> SEED Project · Fund Development Hub</span>
-    <span>Two-Year Campaign · $2.8M Goal · 2026–2028</span>
+    <span>Two-Year Plan · $3.8M Goal · 2026–2028</span>
   </div>
 </footer>
 </main>
@@ -1283,6 +1334,31 @@
    SEED FUND DEVELOPMENT HUB — interactive logic (vanilla JS)
    ============================================================ */
 
+/* ---- TRANSLATION (Google Translate widget, no API key) ---- */
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement(
+    {pageLanguage:'en', includedLanguages:'en,fr,ar,wo,zh-CN', autoDisplay:false},
+    'google_translate_element');
+}
+function setLang(lang, btn){
+  document.querySelectorAll('.lang-chip').forEach(function(c){c.classList.remove('active');});
+  if(btn) btn.classList.add('active');
+  var host=location.hostname;
+  // set the googtrans cookie the widget reads, for every host scope
+  var val='/en/'+lang;
+  document.cookie='googtrans='+val+';path=/';
+  if(host){ document.cookie='googtrans='+val+';path=/;domain='+host; document.cookie='googtrans='+val+';path=/;domain=.'+host; }
+  // drive the hidden <select> if it already exists (no reload needed)
+  var sel=document.querySelector('#google_translate_element select')||document.querySelector('select.goog-te-combo');
+  if(sel){ sel.value=lang; sel.dispatchEvent(new Event('change')); }
+  else { location.reload(); }
+}
+// restore previously chosen language on load
+(function(){
+  var m=document.cookie.match(/googtrans=\/[^\/]*\/([^;]+)/);
+  if(m&&m[1]){var l=decodeURIComponent(m[1]);document.querySelectorAll('.lang-chip').forEach(function(c){c.classList.toggle('active',c.dataset.lang===l);});}
+})();
+
 /* ---- TAB NAVIGATION ---- */
 function showTab(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
@@ -1301,59 +1377,62 @@ function closeMenu(){
   document.getElementById('sidebarScrim').classList.remove('open');
 }
 
-/* ---- DATA ---- */
+/* ---- DATA ----
+   Two-year goal: raise $3.8M for SEED. Nothing raised yet — every figure
+   below is a TARGET in the plan, distributed across the six funder
+   ecosystems. Edit these arrays to update the whole dashboard. */
+var GOAL = 3800000;
+
 var SOURCES = [
-  {name:'Philanthropies', val:900000, pct:32, color:'#C75B2A'},
-  {name:'Federal',        val:650000, pct:23, color:'#0B0B0C'},
-  {name:'Corporations',   val:550000, pct:20, color:'#E0703A'},
-  {name:'Statewide',      val:300000, pct:11, color:'#3b82f6'},
-  {name:'Government',     val:200000, pct:7,  color:'#2E8B57'},
-  {name:'Countywide',     val:200000, pct:7,  color:'#9ca3af'}
+  {name:'Philanthropies', val:1200000, pct:32, color:'#C75B2A'},
+  {name:'Federal',        val:850000,  pct:22, color:'#0B0B0C'},
+  {name:'Corporations',   val:750000,  pct:20, color:'#E0703A'},
+  {name:'Statewide',      val:450000,  pct:12, color:'#3b82f6'},
+  {name:'Government',     val:300000,  pct:8,  color:'#2E8B57'},
+  {name:'Countywide',     val:250000,  pct:6,  color:'#9ca3af'}
 ];
 
 var PROGRAMS = [
-  {name:'SEED Academy',              val:840000, pct:30, color:'#C75B2A'},
-  {name:'SEED Rise',                 val:700000, pct:25, color:'#E0703A'},
-  {name:'Live, Learn & Play',        val:560000, pct:20, color:'#0B0B0C'},
-  {name:'SEED Academy Girls',        val:392000, pct:14, color:'#3b82f6'},
-  {name:'Capacity & Infrastructure', val:308000, pct:11, color:'#2E8B57'}
+  {name:'SEED Academy',              val:1140000, pct:30, color:'#C75B2A'},
+  {name:'SEED Rise',                 val:950000,  pct:25, color:'#E0703A'},
+  {name:'Live, Learn & Play',        val:760000,  pct:20, color:'#0B0B0C'},
+  {name:'SEED Academy Girls',        val:532000,  pct:14, color:'#3b82f6'},
+  {name:'Capacity & Infrastructure', val:418000,  pct:11, color:'#2E8B57'}
 ];
 
-// cumulative pacing ($000s): target vs actual (actual stops at current quarter)
+// Quarterly fundraising PLAN to reach $3.8M over 8 quarters.
+// raise = target to raise that quarter; cum = cumulative target.
 var PACE = [
-  {q:'Y1Q1', target:250,  actual:280},
-  {q:'Y1Q2', target:600,  actual:640},
-  {q:'Y1Q3', target:950,  actual:910},
-  {q:'Y1Q4', target:1400, actual:1120},
-  {q:'Y2Q1', target:1800, actual:null},
-  {q:'Y2Q2', target:2150, actual:null},
-  {q:'Y2Q3', target:2500, actual:null},
-  {q:'Y2Q4', target:2800, actual:null}
+  {q:'Y1Q1', raise:300,  cum:300},
+  {q:'Y1Q2', raise:400,  cum:700},
+  {q:'Y1Q3', raise:450,  cum:1150},
+  {q:'Y1Q4', raise:500,  cum:1650},
+  {q:'Y2Q1', raise:500,  cum:2150},
+  {q:'Y2Q2', raise:550,  cum:2700},
+  {q:'Y2Q3', raise:550,  cum:3250},
+  {q:'Y2Q4', raise:550,  cum:3800}
 ];
 
-var STAGES = [
-  {name:'Secured & Committed', val:1120000, color:'#2E8B57'},
-  {name:'Proposals Submitted', val:980000,  color:'#C75B2A'},
-  {name:'Cultivating',         val:700000,  color:'#3b82f6'},
-  {name:'Identified',          val:520000,  color:'#9ca3af'}
-];
+// Target allocation of the $3.8M plan across the six funder ecosystems.
+var STAGES = SOURCES.map(function(s){return {name:s.name, val:s.val, color:s.color};});
 
+// Prospect plan — opportunities to PURSUE. Status reflects the plan, not results.
 var PIPELINE = [
-  {funder:'USAID — Youth Development & Sport', type:'Federal',      stage:'submitted',   amt:350000, dec:'Q3 2026'},
-  {funder:'U.S. Dept. of State — Sports Diplomacy', type:'Federal', stage:'cultivating', amt:200000, dec:'Q4 2026'},
-  {funder:'Federal Education & Exchange Grant', type:'Federal',     stage:'identified',  amt:100000, dec:'2027'},
-  {funder:'State Youth & Workforce Fund',     type:'Statewide',     stage:'submitted',   amt:180000, dec:'Q3 2026'},
-  {funder:'State Education Innovation Grant',  type:'Statewide',    stage:'cultivating', amt:120000, dec:'Q1 2027'},
-  {funder:'County Community Impact Fund',      type:'Countywide',   stage:'secured',     amt:120000, dec:'Closed'},
-  {funder:'Diaspora Regional Partnership',     type:'Countywide',   stage:'identified',  amt:80000,  dec:'2027'},
-  {funder:'Global Education Foundation',       type:'Philanthropy', stage:'secured',     amt:400000, dec:'Closed'},
-  {funder:'Gender Equity in Sport Trust',      type:'Philanthropy', stage:'submitted',   amt:250000, dec:'Q4 2026'},
-  {funder:'African Futures Foundation',        type:'Philanthropy', stage:'cultivating', amt:250000, dec:'Q1 2027'},
-  {funder:'Global Sportswear Brand',           type:'Corporate',    stage:'secured',     amt:300000, dec:'Closed'},
-  {funder:'Pan-African Bank — CSR',            type:'Corporate',    stage:'submitted',   amt:150000, dec:'Q3 2026'},
-  {funder:'Technology Partner — Africa',       type:'Corporate',    stage:'cultivating', amt:100000, dec:'Q2 2027'},
-  {funder:'Ministry of Sport Partnership',     type:'Government',   stage:'secured',     amt:120000, dec:'Closed'},
-  {funder:'Multilateral Development Fund',     type:'Government',   stage:'identified',  amt:80000,  dec:'2027'}
+  {funder:'USAID — Youth Development & Sport',       type:'Federal',      stage:'planned',  amt:450000, dec:'Apply Y1Q2'},
+  {funder:'U.S. Dept. of State — Sports Diplomacy',  type:'Federal',      stage:'planned',  amt:250000, dec:'Apply Y1Q3'},
+  {funder:'Federal Education & Exchange Grant',      type:'Federal',      stage:'research', amt:150000, dec:'Apply Y2Q1'},
+  {funder:'State Youth & Workforce Fund',            type:'Statewide',    stage:'planned',  amt:250000, dec:'Apply Y1Q2'},
+  {funder:'State Education Innovation Grant',        type:'Statewide',    stage:'research', amt:200000, dec:'Apply Y2Q1'},
+  {funder:'County Community Impact Fund',            type:'Countywide',   stage:'planned',  amt:150000, dec:'Apply Y1Q1'},
+  {funder:'Diaspora Regional Partnership',           type:'Countywide',   stage:'research', amt:100000, dec:'Apply Y1Q4'},
+  {funder:'Global Education Foundation',             type:'Philanthropy', stage:'planned',  amt:500000, dec:'LOI Y1Q1'},
+  {funder:'Gender Equity in Sport Trust',            type:'Philanthropy', stage:'planned',  amt:350000, dec:'LOI Y1Q2'},
+  {funder:'African Futures Foundation',              type:'Philanthropy', stage:'research', amt:350000, dec:'LOI Y1Q3'},
+  {funder:'Global Sportswear Brand',                 type:'Corporate',    stage:'planned',  amt:400000, dec:'Pitch Y1Q1'},
+  {funder:'Pan-African Bank — CSR',                  type:'Corporate',    stage:'planned',  amt:200000, dec:'Pitch Y1Q3'},
+  {funder:'Technology Partner — Africa',             type:'Corporate',    stage:'research', amt:150000, dec:'Pitch Y2Q1'},
+  {funder:'Ministry of Sport Partnership',           type:'Government',   stage:'planned',  amt:180000, dec:'MOU Y1Q2'},
+  {funder:'Multilateral Development Fund',           type:'Government',   stage:'research', amt:120000, dec:'Apply Y2Q1'}
 ];
 
 /* ---- HELPERS ---- */
@@ -1406,20 +1485,17 @@ function buildHBars(containerId, data, maxOverride){
   });
 }
 
-/* ---- PACING BARS (target vs actual) ---- */
+/* ---- PACING BARS (cumulative plan to $3.8M) ---- */
 function buildPace(){
   var c=document.getElementById('paceBars'); if(!c) return;
-  var max=2800;
+  var max=GOAL/1000; // 3800
   c.innerHTML='';
   PACE.forEach(function(p){
     var col=document.createElement('div');col.className='bar-col';
-    var actualH=p.actual?(p.actual/max*100):0;
-    var label=p.actual?('$'+(p.actual/1000).toFixed(p.actual%1000===0?0:1)+'M').replace('$0.','$.'):'—';
     col.innerHTML=
-      '<div class="bval">'+(p.actual?money(p.actual*1000):'')+'</div>'+
+      '<div class="bval">+'+money(p.raise*1000)+'</div>'+
       '<div class="bar-stack">'+
-        '<div class="bar target" data-h="'+(p.target/max*100)+'"></div>'+
-        '<div class="bar actual" data-h="'+actualH+'"></div>'+
+        '<div class="bar actual" data-h="'+(p.cum/max*100)+'" style="position:relative"></div>'+
       '</div>'+
       '<div class="blabel">'+p.q+'</div>';
     c.appendChild(col);
@@ -1436,7 +1512,6 @@ function renderPipe(){
     sum+=p.amt;
     var sclass='s-'+p.stage;
     var slabel=p.stage.charAt(0).toUpperCase()+p.stage.slice(1);
-    if(p.stage==='secured') slabel='Secured';
     return '<tr>'+
       '<td><div class="funder">'+p.funder+'</div><div class="ftype">'+p.type+'</div></td>'+
       '<td class="hide-sm"><span class="pill">'+p.type+'</span></td>'+
@@ -1608,7 +1683,8 @@ function buildBws(){
 document.getElementById('yr').textContent=new Date().getFullYear();
 buildDonut();
 buildHBars('programBars', PROGRAMS);
-buildHBars('diversBars', SOURCES, 2800000); // share-of-goal scale
+buildHBars('stageBars', STAGES, GOAL);   // target allocation by ecosystem
+buildHBars('diversBars', SOURCES, GOAL); // share-of-goal scale
 buildPace();
 renderPipe();
 startMarathonRotator();
@@ -1617,5 +1693,7 @@ document.querySelectorAll('[data-animate]').forEach(function(el){io.observe(el);
 // kick off anything already on screen (overview tab)
 animateIn(document.getElementById('overview'));
 </script>
+<!-- Google Translate (free widget; loads only when online). Powers the language bar. -->
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
