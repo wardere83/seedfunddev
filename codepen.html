@@ -711,7 +711,7 @@
       <button class="lang-trigger" id="langTrigger" aria-haspopup="true" aria-expanded="false" onclick="toggleLangMenu(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
         <span>Translate</span>
-        <span class="lang-current" id="langCurrent">English</span>
+        <span class="lang-current" id="langCurrent" hidden></span>
         <svg class="lang-caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="lang-menu" id="langMenu" role="menu">
@@ -1414,7 +1414,12 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLangMen
 function setLang(lang, btn){
   document.querySelectorAll('.lang-opt').forEach(function(c){c.classList.toggle('active',c.dataset.lang===lang);});
   var cur=document.getElementById('langCurrent');
-  if(cur){var src=btn||document.querySelector('.lang-opt[data-lang="'+lang+'"]');cur.textContent=src?(src.dataset.label||src.textContent):lang;}
+  if(cur){
+    var src=btn||document.querySelector('.lang-opt[data-lang="'+lang+'"]');
+    // show the active language next to "Translate" only when it's not English
+    if(lang==='en'){cur.hidden=true;cur.textContent='';}
+    else{cur.hidden=false;cur.textContent=src?(src.dataset.label||src.textContent):lang;}
+  }
   closeLangMenu();
   var host=location.hostname;
   // set the googtrans cookie the widget reads, for every host scope
@@ -1433,7 +1438,7 @@ function setLang(lang, btn){
     var l=decodeURIComponent(m[1]);
     document.querySelectorAll('.lang-opt').forEach(function(c){c.classList.toggle('active',c.dataset.lang===l);});
     var src=document.querySelector('.lang-opt[data-lang="'+l+'"]'), cur=document.getElementById('langCurrent');
-    if(src&&cur) cur.textContent=src.dataset.label||src.textContent;
+    if(src&&cur&&l!=='en'){cur.hidden=false;cur.textContent=src.dataset.label||src.textContent;}
   }
 })();
 
