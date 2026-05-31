@@ -108,10 +108,10 @@
     font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
     color:var(--orange);margin-bottom:10px;
   }
-  h1{font-size:clamp(32px,4.4vw,50px);font-weight:700;letter-spacing:-.03em;line-height:1.05;}
-  h2{font-size:clamp(24px,2.8vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.1;}
-  h3{font-size:18px;font-weight:600;letter-spacing:-.01em;}
-  .lead{font-size:clamp(15px,1.4vw,17px);color:var(--muted);max-width:62ch;line-height:1.55;}
+  h1{font-size:clamp(26px,3.4vw,40px);font-weight:700;letter-spacing:-.03em;line-height:1.08;}
+  h2{font-size:clamp(21px,2.3vw,28px);font-weight:700;letter-spacing:-.02em;line-height:1.15;}
+  h3{font-size:16.5px;font-weight:600;letter-spacing:-.01em;}
+  .lead{font-size:clamp(14px,1.2vw,15.5px);color:var(--muted);max-width:62ch;line-height:1.55;}
   .section-head{max-width:68ch;margin-bottom:22px;}
   .section-head h2{margin-bottom:12px;}
 
@@ -124,6 +124,18 @@
   }
   .hero .logo-stack{margin:0 auto 30px;width:148px;}
   .hero h1{margin:0 auto 16px;max-width:18ch;}
+  /* hero ticker: single-line marquee of the headline */
+  .hero-ticker{max-width:100% !important;width:100%;margin:0 0 16px !important;overflow:hidden;
+    white-space:nowrap;position:relative;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+  .hero-ticker-track{display:inline-flex;align-items:center;will-change:transform;
+    animation:hero-marquee 26s linear infinite;}
+  .hero-ticker-item{display:inline-block;padding:0 2.5vw;}
+  .hero-ticker em{font-style:normal;color:var(--orange);}
+  .hero-ticker:hover .hero-ticker-track{animation-play-state:paused;}
+  @keyframes hero-marquee{from{transform:translateX(0);}to{transform:translateX(-33.333%);}}
+  @media (prefers-reduced-motion:reduce){.hero-ticker-track{animation:none;}}
   .hero h1 em{font-style:normal;color:var(--orange);}
   .hero .lead{margin:0 auto 14px;}
   .hero-tag{
@@ -365,7 +377,7 @@
     color:#fff;background:linear-gradient(135deg,var(--ink),#34343a);
   }
   .sh-body{min-width:0;}
-  .sh-body h3{font-size:20px;margin-bottom:4px;}
+  .sh-body h3{font-size:17px;margin-bottom:4px;}
   .sh-role{font-size:12.5px;font-weight:600;color:var(--orange);letter-spacing:.01em;margin-bottom:10px;}
   .sh-teaser{font-size:13.5px;color:var(--muted);line-height:1.55;}
   .sh-link{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--ink);}
@@ -391,7 +403,7 @@
   .bio-photo{width:128px;height:128px;flex:none;border-radius:50%;overflow:hidden;position:relative;background:var(--paper-2);box-shadow:0 4px 18px rgba(0,0,0,.10);}
   .bio-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.03);}
   .bio-photo .sh-mono{font-size:28px;}
-  .bio-top h3{font-size:24px;letter-spacing:-.02em;}
+  .bio-top h3{font-size:21px;letter-spacing:-.02em;}
   .bio-text{font-size:15px;line-height:1.7;color:var(--ink-soft);}
   .bio-text p{margin-bottom:14px;}
 
@@ -644,7 +656,13 @@
     <div class="wrap">
       <svg class="logo-stack" viewBox="0 0 128 128" style="margin:0 auto 30px;width:118px"><use href="#seedEmblem"/></svg>
       <div class="hero-tag"><span class="dot"></span> Two-Year Fundraising Plan · $3.8M · 2026–2028</div>
-      <h1>Investing in Africa's next generation of <em>leaders</em>.</h1>
+      <h1 class="hero-ticker" aria-label="Investing in Africa's next generation of leaders.">
+        <span class="hero-ticker-track">
+          <span class="hero-ticker-item">Investing in Africa's next generation of <em>leaders</em>.</span>
+          <span class="hero-ticker-item" aria-hidden="true">Investing in Africa's next generation of <em>leaders</em>.</span>
+          <span class="hero-ticker-item" aria-hidden="true">Investing in Africa's next generation of <em>leaders</em>.</span>
+        </span>
+      </h1>
       <p class="lead">SEED's Fund Development Hub sets the two-year plan to raise <b>$3.8M</b> for SEED — led by the <b>Pan-African Council</b> and <b>Defiant Sports</b>, with targeted asks across government, philanthropic, corporate, county, state, and federal funders to scale education and leadership powered by basketball.</p>
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="showTab('strategy')">Explore the Strategy</button>
