@@ -80,9 +80,10 @@
     padding:10px 16px;border-radius:10px;white-space:nowrap;display:flex;align-items:center;gap:11px;
     transition:color .2s ease,background .2s ease;
   }
-  .tab-btn .tdot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.3;flex:none;transition:opacity .2s,transform .2s;}
-  .tab-btn:hover{color:var(--ink);background:var(--paper-2);}
-  .tab-btn.active{color:var(--ink);background:var(--paper-2);font-weight:600;}
+  .tab-btn .tdot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.3;flex:none;transition:opacity .2s,transform .2s,background .2s;}
+  .tab-btn:hover{color:var(--orange);background:var(--orange-soft);}
+  .tab-btn:active{transform:scale(.98);}
+  .tab-btn.active{color:var(--orange);background:var(--orange-soft);font-weight:600;}
   .tab-btn.active::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
     width:3px;height:18px;border-radius:0 3px 3px 0;background:var(--orange);}
   .tab-btn.active .tdot{opacity:1;background:var(--orange);transform:scale(1.5);}
@@ -155,14 +156,14 @@
 
   /* goal meter */
   .goal-card{
-    margin:36px auto 0;max-width:900px;background:var(--paper);border:1px solid var(--line);
-    border-radius:var(--radius);padding:28px 32px;box-shadow:var(--shadow-lg);text-align:left;
+    margin:30px auto 0;max-width:860px;background:var(--paper);border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px 26px;box-shadow:var(--shadow-lg);text-align:left;
   }
-  .goal-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:16px;}
-  .goal-top .big{font-size:clamp(30px,4vw,42px);font-weight:700;letter-spacing:-.03em;}
-  .goal-top .big small{font-size:18px;color:var(--muted);font-weight:500;letter-spacing:0;}
+  .goal-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:14px;}
+  .goal-top .big{font-size:clamp(26px,3vw,34px);font-weight:700;letter-spacing:-.03em;}
+  .goal-top .big small{font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0;}
   .goal-top .pace{text-align:right;}
-  .goal-top .pace b{font-size:26px;font-weight:700;color:var(--orange);}
+  .goal-top .pace b{font-size:21px;font-weight:700;color:var(--orange);}
   .goal-top .pace span{display:block;font-size:12px;color:var(--muted);letter-spacing:.04em;}
   .meter{height:16px;border-radius:980px;background:var(--paper-2);overflow:hidden;position:relative;}
   .meter > i{display:block;height:100%;width:0;border-radius:980px;
@@ -174,14 +175,14 @@
   .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
   .kpi{
     background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);
-    padding:26px 24px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;cursor:default;
+    padding:18px 18px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;cursor:default;
   }
   .kpi:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#dcdce0;}
-  .kpi .k-val{font-size:30px;font-weight:700;letter-spacing:-.03em;line-height:1;}
+  .kpi .k-val{font-size:24px;font-weight:700;letter-spacing:-.03em;line-height:1;}
   .kpi .k-val .pre{color:var(--orange);}
-  .kpi .k-label{margin-top:10px;font-size:13.5px;color:var(--muted);font-weight:500;}
-  .kpi .k-sub{margin-top:6px;font-size:12px;color:var(--muted-2);}
-  .kpi .k-trend{display:inline-block;margin-top:12px;font-size:11.5px;font-weight:600;
+  .kpi .k-label{margin-top:8px;font-size:12.5px;color:var(--muted);font-weight:500;}
+  .kpi .k-sub{margin-top:5px;font-size:11.5px;color:var(--muted-2);}
+  .kpi .k-trend{display:inline-block;margin-top:10px;font-size:11px;font-weight:600;
     padding:3px 9px;border-radius:980px;background:rgba(46,139,87,.12);color:var(--green);}
 
   /* ---------------- GENERIC CARDS ---------------- */
@@ -190,7 +191,7 @@
   .cards.c2{grid-template-columns:repeat(2,1fr);}
   .card{
     background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
-    padding:30px;transition:transform .3s ease,box-shadow .3s ease;
+    padding:22px;transition:transform .3s ease,box-shadow .3s ease;
   }
   .card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
   .card .ico{
@@ -211,7 +212,7 @@
   /* ---------------- CHART LAYOUT ---------------- */
   .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
   .chart-card{
-    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px;
   }
   .chart-card h3{margin-bottom:4px;}
   .chart-card .chart-sub{font-size:13px;color:var(--muted);margin-bottom:24px;}
@@ -282,11 +283,11 @@
 
   /* ---------------- IMPACT STRIP ---------------- */
   .impact-strip{
-    background:var(--ink);color:#fff;border-radius:var(--radius);padding:36px 40px;
-    display:grid;grid-template-columns:repeat(4,1fr);gap:26px;text-align:center;
+    background:var(--ink);color:#fff;border-radius:var(--radius);padding:28px 32px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:center;
   }
-  .impact-strip .ist b{font-size:clamp(28px,3.6vw,40px);font-weight:700;letter-spacing:-.03em;display:block;color:var(--orange-bright);}
-  .impact-strip .ist span{font-size:13.5px;color:rgba(255,255,255,.72);margin-top:8px;display:block;line-height:1.4;}
+  .impact-strip .ist b{font-size:clamp(24px,2.8vw,32px);font-weight:700;letter-spacing:-.03em;display:block;color:var(--orange-bright);}
+  .impact-strip .ist span{font-size:12.5px;color:rgba(255,255,255,.72);margin-top:7px;display:block;line-height:1.4;}
 
   /* ---------------- TIMELINE ---------------- */
   .timeline{position:relative;padding-left:0;}
@@ -330,7 +331,7 @@
 
   /* ---------------- CONTACT ---------------- */
   .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;}
-  .contact-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:36px;}
+  .contact-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px;}
   .contact-card h3{margin-bottom:8px;}
   .field{margin-bottom:16px;}
   .field label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:7px;letter-spacing:.02em;}
@@ -1004,19 +1005,19 @@
           <div class="chart-sub">The numbers that define the two-year plan</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px">
             <div style="background:var(--paper-3);border-radius:14px;padding:20px">
-              <div style="font-size:26px;font-weight:700;letter-spacing:-.02em">$<span class="count" data-to="3.8" data-decimals="1">0</span>M</div>
+              <div style="font-size:22px;font-weight:700;letter-spacing:-.02em">$<span class="count" data-to="3.8" data-decimals="1">0</span>M</div>
               <div style="font-size:13px;color:var(--muted);margin-top:4px">Two-year goal to raise</div>
             </div>
             <div style="background:var(--paper-3);border-radius:14px;padding:20px">
-              <div style="font-size:26px;font-weight:700;letter-spacing:-.02em">$<span class="count" data-to="158" >0</span>K</div>
+              <div style="font-size:22px;font-weight:700;letter-spacing:-.02em">$<span class="count" data-to="158" >0</span>K</div>
               <div style="font-size:13px;color:var(--muted);margin-top:4px">Needed per month, on average</div>
             </div>
             <div style="background:var(--paper-3);border-radius:14px;padding:20px">
-              <div style="font-size:26px;font-weight:700;letter-spacing:-.02em"><span class="count" data-to="24" >0</span></div>
+              <div style="font-size:22px;font-weight:700;letter-spacing:-.02em"><span class="count" data-to="24" >0</span></div>
               <div style="font-size:13px;color:var(--muted);margin-top:4px">Months in the campaign</div>
             </div>
             <div style="background:var(--paper-3);border-radius:14px;padding:20px">
-              <div style="font-size:26px;font-weight:700;letter-spacing:-.02em"><span class="count" data-to="0" data-suffix="%">0</span></div>
+              <div style="font-size:22px;font-weight:700;letter-spacing:-.02em"><span class="count" data-to="0" data-suffix="%">0</span></div>
               <div style="font-size:13px;color:var(--muted);margin-top:4px">Raised to date — campaign launching</div>
             </div>
           </div>
@@ -1289,7 +1290,7 @@
           <div class="info-line"><div class="il-ico">🏀</div><div><b>Footprint</b><span>Senegal · The Gambia · United States</span></div></div>
           <div style="margin-top:24px;padding:22px;background:var(--ink);border-radius:16px;color:#fff">
             <div style="font-size:13px;color:rgba(255,255,255,.7);margin-bottom:6px;letter-spacing:.04em">CAMPAIGN AT A GLANCE</div>
-            <div style="font-size:30px;font-weight:700;letter-spacing:-.02em;color:var(--orange-bright)">$3.8M · 2 Years</div>
+            <div style="font-size:24px;font-weight:700;letter-spacing:-.02em;color:var(--orange-bright)">$3.8M · 2 Years</div>
             <div style="font-size:13px;color:rgba(255,255,255,.7);margin-top:6px">Six funder ecosystems · new campaign</div>
           </div>
         </div>
