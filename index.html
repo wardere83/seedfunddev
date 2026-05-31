@@ -338,6 +338,111 @@
   .foot-bottom{max-width:var(--maxw);margin:40px auto 0;padding:24px 28px 0;border-top:1px solid var(--line);
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--muted-2);}
 
+  /* ---------------- STAKEHOLDERS ---------------- */
+  .sh-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .sh-card{
+    display:flex;gap:22px;align-items:center;background:var(--paper);border:1px solid var(--line);
+    border-radius:var(--radius);padding:26px;cursor:pointer;
+    transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+  }
+  .sh-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#dcdce0;}
+  .sh-photo{width:108px;height:108px;flex:none;border-radius:50%;overflow:hidden;position:relative;background:var(--paper-2);}
+  .sh-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+  .sh-mono{
+    position:absolute;inset:0;display:grid;place-items:center;font-size:34px;font-weight:700;letter-spacing:.02em;
+    color:#fff;background:linear-gradient(135deg,var(--ink),#34343a);
+  }
+  .sh-body{min-width:0;}
+  .sh-body h3{font-size:20px;margin-bottom:4px;}
+  .sh-role{font-size:12.5px;font-weight:600;color:var(--orange);letter-spacing:.01em;margin-bottom:10px;}
+  .sh-teaser{font-size:13.5px;color:var(--muted);line-height:1.55;}
+  .sh-link{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--ink);}
+  .sh-card:hover .sh-link{color:var(--orange);}
+
+  /* bio modal */
+  .bio-overlay{
+    position:fixed;inset:0;z-index:200;display:none;place-items:center;padding:24px;
+    background:rgba(10,10,12,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    animation:fade .3s ease;
+  }
+  .bio-overlay.open{display:grid;}
+  .bio-modal{
+    background:var(--paper);border-radius:24px;max-width:680px;width:100%;max-height:86vh;overflow-y:auto;
+    padding:40px;position:relative;box-shadow:var(--shadow-lg);animation:fade .4s cubic-bezier(.22,.61,.36,1);
+  }
+  .bio-close{
+    position:absolute;top:18px;right:20px;width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;
+    background:var(--paper-2);color:var(--ink);font-size:20px;line-height:1;transition:background .2s;
+  }
+  .bio-close:hover{background:#e8e8ec;}
+  .bio-top{display:flex;gap:20px;align-items:center;margin-bottom:24px;padding-right:30px;}
+  .bio-photo{width:92px;height:92px;flex:none;border-radius:50%;overflow:hidden;position:relative;background:var(--paper-2);}
+  .bio-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+  .bio-photo .sh-mono{font-size:28px;}
+  .bio-top h3{font-size:24px;letter-spacing:-.02em;}
+  .bio-text{font-size:15px;line-height:1.7;color:var(--ink-soft);}
+  .bio-text p{margin-bottom:14px;}
+
+  /* ---------------- MARATHON CLOTHING ---------------- */
+  .marathon-hero{
+    background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1c 60%,#2a2a2e 100%);color:#fff;
+    border-radius:var(--radius);border:1px solid #1f1f24;padding:34px 38px;position:relative;overflow:hidden;
+    margin-bottom:18px;
+  }
+  .marathon-hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(900px 220px at 0% 100%,rgba(199,91,42,.22),transparent 60%),
+               radial-gradient(700px 220px at 100% 0%,rgba(224,112,58,.14),transparent 60%);
+  }
+  .marathon-hero .kicker{
+    font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(255,255,255,.62);margin-bottom:12px;position:relative;
+  }
+  .marathon-hero blockquote{
+    font-size:clamp(20px,2.8vw,32px);font-weight:700;letter-spacing:-.025em;line-height:1.18;color:#fff;
+    position:relative;padding-left:18px;border-left:3px solid var(--orange);
+  }
+  .marathon-hero cite{display:block;margin-top:14px;font-style:normal;font-size:12px;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);}
+  .marathon-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px;}
+  .marathon-col{display:flex;flex-direction:column;gap:18px;min-width:0;}
+  .m-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .m-card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 20px;border-bottom:1px solid var(--line);}
+  .m-card-head h3{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  .m-card-body{padding:20px;}
+  .m-card-body.flush{padding:0;}
+  .m-card-body p{font-size:14px;color:var(--ink-soft);line-height:1.6;}
+  .btn-mini{font-size:12px;font-weight:600;padding:7px 13px;border-radius:980px;background:var(--paper-2);color:var(--ink);transition:background .2s,color .2s;white-space:nowrap;}
+  .btn-mini:hover{background:#e8e8ec;}
+  .btn-mini.dark{background:var(--ink);color:#fff;}
+  .btn-mini.dark:hover{background:var(--orange);}
+  .nipsey-hero{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0a0a0a;}
+  .nipsey-hero img{width:100%;height:100%;object-fit:cover;object-position:center;}
+  .video-frame{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;}
+  .video-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;}
+  .quote-rotator{min-height:64px;}
+  .quote-rotator blockquote{font-size:15px;font-weight:600;line-height:1.4;letter-spacing:-.01em;color:var(--ink);
+    padding-left:14px;border-left:3px solid var(--orange);transition:opacity .35s ease,transform .35s ease;}
+  .quote-rotator.fading blockquote{opacity:0;transform:translateY(5px);}
+  /* black wall street rotator */
+  .bws-card{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .bws-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#C75B2A;}
+  .bws-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;}
+  .bws-head h3{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
+    display:flex;align-items:center;gap:8px;}
+  .bws-head h3::before{content:"";width:7px;height:7px;border-radius:50%;background:#C75B2A;box-shadow:0 0 8px rgba(199,91,42,.6);}
+  .bws-controls{display:flex;gap:6px;}
+  .bws-controls button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--paper);
+    color:var(--ink);font-size:16px;line-height:1;cursor:pointer;transition:background .15s,border-color .15s;}
+  .bws-controls button:hover{background:var(--paper-2);border-color:var(--muted-2);}
+  .bws-stage{padding:16px 18px;border-top:1px solid var(--line);min-height:74px;display:flex;align-items:center;}
+  .bws-fact{font-size:13.5px;font-weight:600;line-height:1.45;color:var(--ink);transition:opacity .3s ease,transform .3s ease;}
+  .bws-fact.fading{opacity:0;transform:translateY(4px);}
+  .bws-dots{display:flex;flex-wrap:wrap;gap:6px;padding:10px 18px 14px;border-top:1px solid var(--line);}
+  .bws-dot{width:8px;height:8px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--paper-2);cursor:pointer;transition:background .15s,transform .15s;}
+  .bws-dot:hover{transform:scale(1.25);}
+  .bws-dot.on{background:#C75B2A;border-color:#C75B2A;}
+
   /* ---------------- RESPONSIVE ---------------- */
   @media (max-width:980px){
     .kpi-grid{grid-template-columns:repeat(2,1fr);}
@@ -348,6 +453,8 @@
     .contact-grid{grid-template-columns:1fr;}
     .tl-grid{grid-template-columns:1fr 1fr;gap:34px 0;}
     .tl-grid::before{display:none;}
+    .sh-grid{grid-template-columns:1fr;}
+    .marathon-grid{grid-template-columns:1fr;}
     .tabs{position:fixed;bottom:0;left:0;right:0;top:auto;background:rgba(255,255,255,.9);
       backdrop-filter:blur(20px);border-top:1px solid var(--line);padding:8px 12px;justify-content:flex-start;}
   }
@@ -363,6 +470,11 @@
     table{font-size:12.5px;}
     thead th,tbody td{padding:12px 14px;}
     .hide-sm{display:none;}
+    .sh-card{flex-direction:column;text-align:center;}
+    .sh-role{margin-bottom:8px;}
+    .bio-modal{padding:28px 22px;}
+    .bio-top{flex-direction:column;text-align:center;padding-right:0;}
+    .marathon-hero{padding:24px 22px;}
   }
 </style>
 </head>
@@ -423,8 +535,10 @@
       <button class="tab-btn" data-tab="impact" onclick="showTab('impact')">Programs &amp; Impact</button>
       <button class="tab-btn" data-tab="strategy" onclick="showTab('strategy')">Funding Strategy</button>
       <button class="tab-btn" data-tab="metrics" onclick="showTab('metrics')">KPI Dashboard</button>
-      <button class="tab-btn" data-tab="pipeline" onclick="showTab('pipeline')">Funding Pipeline</button>
-      <button class="tab-btn" data-tab="partners" onclick="showTab('partners')">Partner &amp; Invest</button>
+      <button class="tab-btn" data-tab="pipeline" onclick="showTab('pipeline')">Pipeline</button>
+      <button class="tab-btn" data-tab="stakeholders" onclick="showTab('stakeholders')">Stakeholders</button>
+      <button class="tab-btn" data-tab="partnersorg" onclick="showTab('partnersorg')">Partners</button>
+      <button class="tab-btn" data-tab="partners" onclick="showTab('partners')">Invest</button>
     </div>
     <button class="nav-cta" onclick="showTab('partners')">Become a Funder</button>
   </div>
@@ -945,8 +1059,10 @@
         </div>
         <div class="foot-col">
           <h5>Engage</h5>
-          <a onclick="showTab('pipeline')">Funding Pipeline</a>
-          <a onclick="showTab('partners')">Partner &amp; Invest</a>
+          <a onclick="showTab('pipeline')">Pipeline</a>
+          <a onclick="showTab('stakeholders')">Stakeholders</a>
+          <a onclick="showTab('partnersorg')">Partners</a>
+          <a onclick="showTab('partners')">Invest</a>
           <a href="https://www.seedproject.org/" target="_blank" rel="noopener">seedproject.org</a>
         </div>
       </div>
@@ -957,6 +1073,24 @@
     <span>Two-Year Campaign · $2.8M Goal · 2026–2028</span>
   </div>
 </footer>
+
+<!-- ============ STAKEHOLDER BIO MODAL ============ -->
+<div class="bio-overlay" id="bioOverlay" onclick="if(event.target===this)closeBio()">
+  <div class="bio-modal" role="dialog" aria-modal="true" aria-labelledby="bioName">
+    <button class="bio-close" onclick="closeBio()" aria-label="Close">×</button>
+    <div class="bio-top">
+      <div class="bio-photo">
+        <img id="bioImg" src="" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+        <span class="sh-mono" id="bioMono" style="display:none"></span>
+      </div>
+      <div>
+        <h3 id="bioName"></h3>
+        <div class="sh-role" id="bioRole"></div>
+      </div>
+    </div>
+    <div class="bio-text" id="bioText"></div>
+  </div>
+</div>
 
 <script>
 /* ============================================================
