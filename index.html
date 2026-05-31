@@ -35,6 +35,40 @@
 
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+
+  /* ---------------- CUSTOM CURVED-CORNER SCROLLBARS ----------------
+     Visual design adapted from cbolson's pen (thin, fully-rounded
+     "curved corner" thumb with rounded caps that thickens on hover/
+     active) — recoloured to SEED's branding orange. Applied to the
+     window and every scrollable region. */
+  :root{
+    --sb-thumb:var(--orange);
+    --sb-thumb-active:var(--orange-bright);
+    --sb-track:transparent;
+    --sb-track-hover:var(--paper-2);
+    --sb-size:10px;
+  }
+  /* Firefox */
+  html{scrollbar-width:thin;scrollbar-color:var(--sb-thumb) transparent;}
+  /* WebKit / Chromium / Safari */
+  *::-webkit-scrollbar{width:var(--sb-size);height:var(--sb-size);}
+  *::-webkit-scrollbar-track{background:var(--sb-track);border-radius:980px;margin:4px;}
+  *::-webkit-scrollbar-thumb{
+    background:var(--sb-thumb);
+    border-radius:980px;                 /* fully curved corners */
+    border:3px solid transparent;        /* slims the thumb, rounds the caps */
+    background-clip:padding-box;
+    transition:background .2s ease,border-width .2s ease;
+  }
+  *::-webkit-scrollbar-thumb:hover,
+  *::-webkit-scrollbar-thumb:active{
+    background:var(--sb-thumb-active);
+    border-width:2px;                    /* thickens on hover/active */
+    background-clip:padding-box;
+  }
+  *::-webkit-scrollbar-track:hover{background:var(--sb-track-hover);}
+  *::-webkit-scrollbar-corner{background:transparent;}
+
   body{
     font-family:var(--font);
     color:var(--ink);
