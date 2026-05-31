@@ -97,8 +97,8 @@
   }
   .app{margin-left:var(--rail);flex:1;min-width:0;display:flex;flex-direction:column;height:100vh;height:100dvh;}
   /* the scrolling region with the curved SVG scrollbar */
-  .scroll-host{position:relative;flex:1;min-height:0;}
-  .scroll-body{height:100%;overflow-y:scroll;scrollbar-width:none;-ms-overflow-style:none;}
+  .scroll-host{position:relative;flex:1;min-height:0;border-bottom-right-radius:72px;overflow:hidden;}
+  .scroll-body{height:100%;overflow-y:scroll;scrollbar-width:none;-ms-overflow-style:none;border-bottom-right-radius:72px;}
   .scroll-body::-webkit-scrollbar{display:none;}
   .cscroll-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:40;}
 
@@ -1845,18 +1845,22 @@ function buildBws(){
       track=document.getElementById('cscrollTrack'),
       thumb=document.getElementById('cscrollThumb');
   if(!host||!body||!svg||!track||!thumb) return;
-  var W=0,H=0,trackLen=0,inset=14,radius=56;
+  var W=0,H=0,trackLen=0,inset=12,radius=72;
 
   function buildPath(){
     var r=host.getBoundingClientRect(); W=r.width; H=r.height;
     svg.setAttribute('viewBox','0 0 '+W+' '+H);
-    var x=W-inset;                 // right edge anchor (top & bottom)
-    var top=inset+8, bot=H-inset-8;
-    var midY=(top+bot)/2;
-    var bow=Math.max(40, Math.min(W*0.12, 90)); // how far the bar curves inward
-    // A single smooth bow down the right side — curved along its WHOLE
-    // length, not a straight edge. Thumb shares this curved path.
-    var d='M '+x+' '+top+' Q '+(x-bow)+' '+midY+' '+x+' '+bot;
+    var x=W-inset;                       // right edge
+    var yBot=H-inset;                    // bottom edge
+    var rad=Math.min(radius, H*0.32, W*0.6);
+    var top=inset;
+    // Hug the panel's rounded corner: straight down the right edge, then a
+    // big quarter-circle arc sweeping into the bottom-right corner, then a
+    // short run along the bottom. Stays on the edge — never bows into the page.
+    var d='M '+x+' '+top+
+          ' L '+x+' '+(yBot-rad)+
+          ' A '+rad+' '+rad+' 0 0 1 '+(x-rad)+' '+yBot+
+          ' L '+(W*0.5)+' '+yBot;
     track.setAttribute('d',d); thumb.setAttribute('d',d);
     trackLen=thumb.getTotalLength();
     update();
@@ -1877,7 +1881,7 @@ function buildBws(){
   var dragging=false;
   function fromPointer(clientY){
     var r=host.getBoundingClientRect();
-    var top=inset+8, bot=H-inset-8;
+    var top=inset, bot=H-inset;
     var y=Math.min(Math.max(clientY-r.top,top),bot);
     var frac=(y-top)/(bot-top);
     var max=body.scrollHeight-body.clientHeight;
