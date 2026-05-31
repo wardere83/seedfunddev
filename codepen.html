@@ -44,10 +44,10 @@
   :root{
     --sb-thumb:var(--orange);
     --sb-thumb-active:var(--orange-bright);
-    --sb-track:rgba(0,0,0,.06);
-    --sb-thumb-w:4;
-    --sb-thumb-w-active:6;
-    --sb-track-w:4;
+    --sb-track:rgba(199,91,42,.16);
+    --sb-thumb-w:7;
+    --sb-thumb-w-active:10;
+    --sb-track-w:7;
   }
   .cscroll-track{
     fill:none;stroke:var(--sb-track);stroke-width:var(--sb-track-w);stroke-linecap:round;
@@ -56,17 +56,19 @@
   .cscroll-thumb{
     fill:none;stroke:var(--sb-thumb);stroke-width:var(--sb-thumb-w);stroke-linecap:round;
     pointer-events:auto;cursor:grab;
+    filter:drop-shadow(0 1px 3px rgba(199,91,42,.4));
     transition:stroke-width .15s ease-in-out,stroke .15s ease-in-out;
   }
   .cscroll-svg:has(.cscroll-thumb:active){--sb-thumb-w:var(--sb-thumb-w-active);--sb-track-w:var(--sb-thumb-w-active);}
+  .cscroll-thumb:hover{stroke:var(--sb-thumb-active);}
   .cscroll-thumb:active{stroke:var(--sb-thumb-active);cursor:grabbing;}
-  /* fallback native styling for any other scrollable area (sidebar, tables, modal) */
-  html{scrollbar-width:thin;scrollbar-color:var(--orange) transparent;}
-  *::-webkit-scrollbar{width:8px;height:8px;}
-  *::-webkit-scrollbar-thumb{background:var(--orange);border-radius:980px;border:2px solid transparent;background-clip:padding-box;}
-  *::-webkit-scrollbar-thumb:hover{background:var(--orange-bright);}
-  *::-webkit-scrollbar-track{background:transparent;}
-  *::-webkit-scrollbar-corner{background:transparent;}
+  /* sidebar/tables/modal use NO scrollbar chrome so only the curved bar shows */
+  html{scrollbar-width:none;}
+  *::-webkit-scrollbar{width:0;height:0;}
+  /* keep slim orange native bar only inside the bio modal (its own scroll) */
+  .bio-modal{scrollbar-width:thin;scrollbar-color:var(--orange) transparent;}
+  .bio-modal::-webkit-scrollbar{width:8px;}
+  .bio-modal::-webkit-scrollbar-thumb{background:var(--orange);border-radius:980px;border:2px solid transparent;background-clip:padding-box;}
 
   body{
     font-family:var(--font);
@@ -1843,7 +1845,7 @@ function buildBws(){
       track=document.getElementById('cscrollTrack'),
       thumb=document.getElementById('cscrollThumb');
   if(!host||!body||!svg||!track||!thumb) return;
-  var W=0,H=0,trackLen=0,inset=7,radius=26;
+  var W=0,H=0,trackLen=0,inset=14,radius=56;
 
   function buildPath(){
     var r=host.getBoundingClientRect(); W=r.width; H=r.height;
