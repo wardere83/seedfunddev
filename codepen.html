@@ -37,36 +37,35 @@
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
 
   /* ---------------- CUSTOM CURVED-CORNER SCROLLBARS ----------------
-     Visual design adapted from cbolson's pen (thin, fully-rounded
-     "curved corner" thumb with rounded caps that thickens on hover/
-     active) — recoloured to SEED's branding orange. Applied to the
-     window and every scrollable region. */
+     Faithful port of cbolson's pen: the native scrollbar is hidden and
+     an SVG path traces the rounded-corner edge of the scroll panel, with
+     a thumb (partial stroke) mapped to scroll position. Recoloured to
+     SEED's branding orange. Powered by the .cscroll SVG + JS below. */
   :root{
     --sb-thumb:var(--orange);
     --sb-thumb-active:var(--orange-bright);
-    --sb-track:transparent;
-    --sb-track-hover:var(--paper-2);
-    --sb-size:10px;
+    --sb-track:rgba(0,0,0,.06);
+    --sb-thumb-w:4;
+    --sb-thumb-w-active:6;
+    --sb-track-w:4;
   }
-  /* Firefox */
-  html{scrollbar-width:thin;scrollbar-color:var(--sb-thumb) transparent;}
-  /* WebKit / Chromium / Safari */
-  *::-webkit-scrollbar{width:var(--sb-size);height:var(--sb-size);}
-  *::-webkit-scrollbar-track{background:var(--sb-track);border-radius:980px;margin:4px;}
-  *::-webkit-scrollbar-thumb{
-    background:var(--sb-thumb);
-    border-radius:980px;                 /* fully curved corners */
-    border:3px solid transparent;        /* slims the thumb, rounds the caps */
-    background-clip:padding-box;
-    transition:background .2s ease,border-width .2s ease;
+  .cscroll-track{
+    fill:none;stroke:var(--sb-track);stroke-width:var(--sb-track-w);stroke-linecap:round;
+    transition:stroke-width .15s ease-in-out,stroke .15s ease-in-out;
   }
-  *::-webkit-scrollbar-thumb:hover,
-  *::-webkit-scrollbar-thumb:active{
-    background:var(--sb-thumb-active);
-    border-width:2px;                    /* thickens on hover/active */
-    background-clip:padding-box;
+  .cscroll-thumb{
+    fill:none;stroke:var(--sb-thumb);stroke-width:var(--sb-thumb-w);stroke-linecap:round;
+    pointer-events:auto;cursor:grab;
+    transition:stroke-width .15s ease-in-out,stroke .15s ease-in-out;
   }
-  *::-webkit-scrollbar-track:hover{background:var(--sb-track-hover);}
+  .cscroll-svg:has(.cscroll-thumb:active){--sb-thumb-w:var(--sb-thumb-w-active);--sb-track-w:var(--sb-thumb-w-active);}
+  .cscroll-thumb:active{stroke:var(--sb-thumb-active);cursor:grabbing;}
+  /* fallback native styling for any other scrollable area (sidebar, tables, modal) */
+  html{scrollbar-width:thin;scrollbar-color:var(--orange) transparent;}
+  *::-webkit-scrollbar{width:8px;height:8px;}
+  *::-webkit-scrollbar-thumb{background:var(--orange);border-radius:980px;border:2px solid transparent;background-clip:padding-box;}
+  *::-webkit-scrollbar-thumb:hover{background:var(--orange-bright);}
+  *::-webkit-scrollbar-track{background:transparent;}
   *::-webkit-scrollbar-corner{background:transparent;}
 
   body{
@@ -94,7 +93,12 @@
     border-right:1px solid var(--line);
     display:flex;flex-direction:column;
   }
-  .app{margin-left:var(--rail);flex:1;min-width:0;}
+  .app{margin-left:var(--rail);flex:1;min-width:0;display:flex;flex-direction:column;height:100vh;height:100dvh;}
+  /* the scrolling region with the curved SVG scrollbar */
+  .scroll-host{position:relative;flex:1;min-height:0;}
+  .scroll-body{height:100%;overflow-y:scroll;scrollbar-width:none;-ms-overflow-style:none;}
+  .scroll-body::-webkit-scrollbar{display:none;}
+  .cscroll-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:40;}
 
   .brand{display:flex;align-items:center;gap:12px;cursor:pointer;padding:26px 22px 18px;position:relative;}
   .brand::after{content:"";position:absolute;left:22px;right:22px;bottom:0;height:1px;
@@ -597,7 +601,11 @@
     .sh-list{grid-template-columns:1fr;}
     .marathon-grid{grid-template-columns:1fr;}
     .mobile-bar{display:flex;}
-    .app{margin-left:0;}
+    .app{margin-left:0;height:auto;}
+    /* on mobile, use normal window scrolling (curved SVG bar is desktop polish) */
+    .scroll-host{position:static;}
+    .scroll-body{height:auto;overflow:visible;}
+    .cscroll-svg{display:none;}
     .sidebar{transform:translateX(-100%);transition:transform .32s cubic-bezier(.22,.61,.36,1);box-shadow:var(--shadow-lg);}
     .sidebar.open{transform:translateX(0);}
   }
@@ -725,6 +733,14 @@
   </div>
 </div>
 <div id="google_translate_element" style="display:none"></div>
+
+<!-- scroll region with curved-corner SVG scrollbar -->
+<div class="scroll-host">
+<svg class="cscroll-svg" id="cscrollSvg" preserveAspectRatio="none" aria-hidden="true">
+  <path class="cscroll-track" id="cscrollTrack" d=""></path>
+  <path class="cscroll-thumb" id="cscrollThumb" d=""></path>
+</svg>
+<div class="scroll-body" id="scrollBody">
 
 <!-- ============================================================
      TAB 1 — OVERVIEW
@@ -1362,6 +1378,8 @@
     <span>Two-Year Plan · $3.8M Goal · 2026–2028</span>
   </div>
 </footer>
+</div><!-- /.scroll-body -->
+</div><!-- /.scroll-host -->
 </main>
 </div><!-- /.layout -->
 
@@ -1451,7 +1469,9 @@ function showTab(id, skipHash){
   if(!skipHash && location.hash.slice(1)!==id){
     if(history.replaceState) history.replaceState(null,'','#'+id); else location.hash=id;
   }
-  window.scrollTo({top:0,behavior:'smooth'});
+  var sb=document.getElementById('scrollBody');
+  if(sb) sb.scrollTo({top:0,behavior:'smooth'}); else window.scrollTo({top:0,behavior:'smooth'});
+  if(window.__cscrollRefresh) window.__cscrollRefresh();
   closeMenu();
   // nudge the Marathon video to play when its tab opens (some browsers
   // pause autoplay on hidden elements)
@@ -1705,7 +1725,7 @@ var io=new IntersectionObserver(function(entries){
       en.target.querySelectorAll('.bar[data-h]').forEach(function(el){el.style.height=el.dataset.h+'%';});
     }
   });
-},{threshold:.2});
+},{root:document.getElementById('scrollBody'),threshold:.2});
 
 /* ---- STAKEHOLDER BIOS + MODAL ---- */
 var STAKEHOLDERS = {
@@ -1802,6 +1822,72 @@ function buildBws(){
   dots.innerHTML=BWS_FACTS.map(function(_,i){return '<button class="bws-dot'+(i===0?' on':'')+'" onclick="bwsGo('+i+')" aria-label="Fact '+(i+1)+'"></button>';}).join('');
   fact.textContent=BWS_FACTS[0]; restartBws();
 }
+
+/* ---- CURVED-CORNER SCROLLBAR (cbolson-style SVG overlay) ----
+   The track is a rounded-rect path hugging the right edge of the scroll
+   panel; the thumb is a length-mapped sub-segment of that same path that
+   moves with scroll and is draggable. */
+(function(){
+  var host=document.querySelector('.scroll-host'),
+      body=document.getElementById('scrollBody'),
+      svg=document.getElementById('cscrollSvg'),
+      track=document.getElementById('cscrollTrack'),
+      thumb=document.getElementById('cscrollThumb');
+  if(!host||!body||!svg||!track||!thumb) return;
+  var W=0,H=0,trackLen=0,inset=7,radius=26;
+
+  function buildPath(){
+    var r=host.getBoundingClientRect(); W=r.width; H=r.height;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var x=W-inset, top=inset+radius, bot=H-inset-radius;
+    // vertical line down the right edge, curving into top & bottom corners
+    var d='M '+(x-0)+' '+top+
+          ' L '+x+' '+bot+
+          ' A '+radius+' '+radius+' 0 0 1 '+(x-radius)+' '+(H-inset)+
+          ' M '+x+' '+top+
+          ' A '+radius+' '+radius+' 0 0 0 '+(x-radius)+' '+inset;
+    // simpler: a single vertical track with rounded ends along right edge
+    d='M '+x+' '+top+' L '+x+' '+bot;
+    track.setAttribute('d',d); thumb.setAttribute('d',d);
+    trackLen=thumb.getTotalLength();
+    update();
+  }
+  function update(){
+    var max=body.scrollHeight-body.clientHeight;
+    if(max<=2){ svg.style.opacity='0'; return; }
+    svg.style.opacity='1';
+    var frac=body.scrollTop/max;
+    var view=body.clientHeight/body.scrollHeight;       // visible portion
+    var thumbLen=Math.max(trackLen*view, 28);
+    var travel=trackLen-thumbLen;
+    var start=frac*travel;
+    thumb.style.strokeDasharray=thumbLen+' '+trackLen;
+    thumb.style.strokeDashoffset=(-start);
+  }
+  // map a clientY drag to scrollTop
+  var dragging=false;
+  function fromPointer(clientY){
+    var r=host.getBoundingClientRect();
+    var top=inset+radius, bot=H-inset-radius;
+    var y=Math.min(Math.max(clientY-r.top,top),bot);
+    var frac=(y-top)/(bot-top);
+    var max=body.scrollHeight-body.clientHeight;
+    body.scrollTop=frac*max;
+  }
+  thumb.addEventListener('pointerdown',function(e){dragging=true;thumb.setPointerCapture(e.pointerId);e.preventDefault();});
+  window.addEventListener('pointermove',function(e){if(dragging)fromPointer(e.clientY);});
+  window.addEventListener('pointerup',function(){dragging=false;});
+  // click on track jumps
+  svg.addEventListener('pointerdown',function(e){if(e.target===thumb)return;fromPointer(e.clientY);});
+  svg.style.pointerEvents='none'; track.style.pointerEvents='auto'; thumb.style.pointerEvents='auto';
+
+  body.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',buildPath);
+  // rebuild when content/tab changes
+  window.__cscrollRefresh=function(){requestAnimationFrame(buildPath);};
+  requestAnimationFrame(buildPath);
+  setTimeout(buildPath,400);
+})();
 
 /* ---- INIT ---- */
 document.getElementById('yr').textContent=new Date().getFullYear();
