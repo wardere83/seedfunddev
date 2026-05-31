@@ -362,6 +362,15 @@
     display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--muted-2);}
 
   /* ---------------- STAKEHOLDERS ---------------- */
+  .sh-list{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .sh-row{
+    display:flex;gap:20px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);
+    border-radius:var(--radius);padding:24px;
+    transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+  }
+  .sh-row:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#dcdce0;}
+  .sh-row .sh-body h3{font-size:18px;margin-bottom:3px;}
+  .sh-row .sh-body p{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-top:10px;}
   .sh-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
   .sh-card{
     display:flex;gap:22px;align-items:center;background:var(--paper);border:1px solid var(--line);
@@ -521,6 +530,7 @@
     .tl-grid{grid-template-columns:1fr 1fr;gap:34px 0;}
     .tl-grid::before{display:none;}
     .sh-grid{grid-template-columns:1fr;}
+    .sh-list{grid-template-columns:1fr;}
     .marathon-grid{grid-template-columns:1fr;}
     .mobile-bar{display:flex;}
     .app{margin-left:0;}
@@ -1071,8 +1081,8 @@
         <h2>The leaders helping SEED raise $3.8M.</h2>
         <p class="lead">This campaign is championed by a coalition of world-class operators across sport, culture, capital, and strategy — opening doors to funders and strengthening SEED's organizational capacity to deliver.</p>
       </div>
-      <div class="sh-grid">
-        <article class="sh-card" data-animate onclick="openBio('amadou')">
+      <div class="sh-list">
+        <article class="sh-row" data-animate>
           <div class="sh-photo">
             <img src="assets/stakeholders/amadou-gallo-fall.webp" alt="Amadou Gallo Fall" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
             <span class="sh-mono" style="display:none">AF</span>
@@ -1080,11 +1090,10 @@
           <div class="sh-body">
             <h3>Amadou Gallo Fall</h3>
             <div class="sh-role">Founder, SEED Project · President, Basketball Africa League</div>
-            <p class="sh-teaser">Founded SEED in 1998 after his own journey from Senegal to a U.S. basketball scholarship; now leads the BAL, impacting thousands of African youth.</p>
-            <span class="sh-link">Read full bio →</span>
+            <p>In 1998, as a graduate student from Senegal studying in the United States, Amadou Gallo Fall founded SEED Project (Sports for Education and Economic Development). Fall was inspired by his own journey as a student-athlete when he was discovered by a member of the Peace Corps in the 1980s, which eventually led to a basketball scholarship in the United States. After graduating from the University of the District of Columbia, Fall worked for the Senegalese Basketball Federation, then joined the Dallas Mavericks (NBA) as Director of Player Personnel and Vice President of International Affairs. He is currently President of the Basketball Africa League, where he continues to impact the lives of thousands of African youth.</p>
           </div>
         </article>
-        <article class="sh-card" data-animate onclick="openBio('steven')">
+        <article class="sh-row" data-animate>
           <div class="sh-photo">
             <img src="assets/stakeholders/steven-carless.jpg" alt="Steven Carless" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
             <span class="sh-mono" style="display:none">SC</span>
@@ -1092,32 +1101,29 @@
           <div class="sh-body">
             <h3>Steven Carless</h3>
             <div class="sh-role">CEO, The Defiant Foundation · Grammy-Winning Executive</div>
-            <p class="sh-teaser">Trailblazing music &amp; culture leader and first Black President of Warner Records; now drives values-led impact across the U.S. and globally.</p>
-            <span class="sh-link">Read full bio →</span>
+            <p>Grammy Award-winning executive Steven Pierre Carless, widely known as Steve-O, is a trailblazing leader recognized for his work with Nipsey Hussle, Beyoncé, Polo G, John Legend, and others. His contributions to award-winning records have earned him multiple Grammys. In 2021, he made history as the first Black President of Warner Records, cementing his legacy as a transformative force in music and culture. Now serving as CEO of The Defiant Foundation, Carless brings elite leadership to drive a value-driven impact across the U.S. and globally.</p>
           </div>
         </article>
-        <article class="sh-card" data-animate onclick="openBio('hassan')">
+        <article class="sh-row" data-animate>
           <div class="sh-photo">
             <img src="assets/stakeholders/hassan-wardere.jpg" alt="Hassan Wardere" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
             <span class="sh-mono" style="display:none">HW</span>
           </div>
           <div class="sh-body">
             <h3>Hassan Wardere</h3>
-            <div class="sh-role">CEO, Bulle Consulting · Policy &amp; Scaling Strategist</div>
-            <p class="sh-teaser">Cross-sector strategist advancing the Return on Relationship (RoR) framework to help organizations build robust, measurable capacity.</p>
-            <span class="sh-link">Read full bio →</span>
+            <div class="sh-role">CEO, Bulle Consulting · Policy &amp; Organizational Scaling Strategist</div>
+            <p>Hassan Wardere, CEO of Bulle Consulting, is a high-impact policy strategist and organizational scaling expert with extensive cross-sector experience spanning government agencies, global corporations, and CBOs. He specializes in advancing the Return on Relationship (RoR) framework, leveraging authentic connectivity as a strategic driver of systemic evolution and institutional growth. As a transformational leader, Hassan integrates systems thinking, adaptive leadership, and equity-centered design to help organizations build robust capacity and deliver measurable results in the world's most complex environments.</p>
           </div>
         </article>
-        <article class="sh-card" data-animate onclick="openBio('fabien')">
+        <article class="sh-row" data-animate>
           <div class="sh-photo">
             <img src="assets/stakeholders/fabien-anthony.jpg" alt="Fabien Anthony" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
             <span class="sh-mono" style="display:none">FA</span>
           </div>
           <div class="sh-body">
             <h3>Fabien Anthony</h3>
-            <div class="sh-role">Chairman, Pan-African Council · CIO, Africa Equity Group</div>
-            <p class="sh-teaser">MIPAD Top 100 honoree and impact investor across 22+ countries, catalyzing public and private capital for sustainable development.</p>
-            <span class="sh-link">Read full bio →</span>
+            <div class="sh-role">Chairman, Pan-African Council · Chief Investment Officer, Africa Equity Group</div>
+            <p>Recognized as a Global Top 100 Most Influential People of African Descent (MIPAD) Under 40 and an African Travel Top 100 Global Tourism Personality in 2019, Fabien Anthony is a lifelong entrepreneur and impact investor across technology, agribusiness, real estate, and entertainment, with ventures spanning over 22 countries on four continents. He is currently Chief Investment Officer at Africa Equity Group, providing strategic capital, technical assistance, and access to business ecosystems for African enterprises. He previously co-founded AFAR Ventures and AFRO.TV, serving brands such as PepsiCo, Netflix, Sony, and Disney. He holds a degree in Electrical Engineering and an MBA, and is fluent in English, French, Spanish, Portuguese, Chinese, and Creole.</p>
           </div>
         </article>
       </div>
